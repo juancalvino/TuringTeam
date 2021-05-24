@@ -19,6 +19,10 @@ public class Radaiteran extends Guerrero{
 		super.atacar(enemigo);
 		powerUp += 3;
 	}
+	
+	public boolean isActivo() {
+		return activo;
+	}
 
 
 
