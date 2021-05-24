@@ -1,14 +1,19 @@
-package Guerreros;
+package WirivesGuerreros;
+
+import java.util.Stack;
 
 public class Wrives extends Guerreros {
  
+	private int cantidad;
+
 	private int powerUp = 0;
 	private int salud;
 	private int danioBasico;
 	private boolean atacaNormal;
 	private boolean activo;
 	
-	public Wrives() {
+	public Wrives(int cantidad) {
+		this.cantidad = cantidad;
 		posicionar();
 	}
 
@@ -35,7 +40,13 @@ public class Wrives extends Guerreros {
 	@Override
 	public void recibirAtaque (int ataqueEnemigo) {
 			salud -= ataqueEnemigo;
-			activo  = true;
+			
+			if (salud <= 0) {
+				--cantidad;
+			}
+			else {
+				activo = true;
+			}
 	}
 
 	@Override
@@ -48,5 +59,10 @@ public class Wrives extends Guerreros {
 		activo = false;
 		salud += 50;
 		powerUp += 50;
+		
+	}
+
+	public int getCantidad() {
+		return cantidad;
 	}
 }

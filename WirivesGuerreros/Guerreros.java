@@ -1,4 +1,4 @@
-package Guerreros;
+package WirivesGuerreros;
 
 public abstract class Guerreros {
 

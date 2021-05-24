@@ -1,17 +1,17 @@
-package Guerreros;
+package WirivesGuerreros;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 
 public class WrivesTest {
 
-	Wrives guerreroWrives =  new Wrives();
+	Wrives guerreroWrives =  new Wrives(20);
 	GuerreroRandom enemigo;
 
 	// Crear un guerrero Wrives
 	@Test
 	public void prueba001() {   
-		new Wrives();
+		new Wrives(20);
 	}
 	
 
@@ -44,7 +44,7 @@ public class WrivesTest {
 	 */	
 	@Test
 	public void prueba04() {
-		enemigo = new GuerreroRandom(100, 100);
+		enemigo = new GuerreroRandom(2,100, 100);
 		enemigo.atacar(guerreroWrives);
 		assertEquals(8, guerreroWrives.getSalud());			
 	}	
@@ -54,7 +54,7 @@ public class WrivesTest {
 	 */	
 	@Test
 	public void prueba05() {
-	enemigo = new GuerreroRandom(113, 108);
+	enemigo = new GuerreroRandom(2,113, 108);
 
 	assertEquals(108, guerreroWrives.getSalud());	
 

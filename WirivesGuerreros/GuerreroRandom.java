@@ -1,14 +1,16 @@
-package Guerreros;
+package WirivesGuerreros;
 
 public class GuerreroRandom extends Guerreros{
 
+	private int cantidad;
 	
 	private final int saludPosicionada;
 	private final int danioPosicionado;	
 	private int salud;
 	private int danioBasico;
 
-	public GuerreroRandom(int salud , int danio) {
+	public GuerreroRandom(int cantidad ,int salud , int danio) {
+		this.cantidad = cantidad;
 		this.saludPosicionada = salud;
 		this.danioPosicionado = danio;
 		posicionar();
