@@ -1,5 +1,4 @@
 public abstract class Guerreros {
-
     protected int salud;
     protected int danio;
 
@@ -12,6 +11,8 @@ public abstract class Guerreros {
     }
 
     public abstract int atacar();
+
+    public abstract void atacar(Guerreros enemigo);
 
     public abstract void recibirAtaque(int danioRecibido);
 
