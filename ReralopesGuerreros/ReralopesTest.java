@@ -11,7 +11,6 @@ public class ReralopesTest {
         new Reralopes();
     }
 
-
     // Verificar que los valores básicos (salud, danio) de una Reralopes coinciden con los indicados por la consigna
     // Salud: 53, Danio basico: 27
     @Test
@@ -27,6 +26,7 @@ public class ReralopesTest {
         Assert.assertEquals(27, unaReralopes.atacar());
         Assert.assertEquals(0, unaReralopes.atacar());
         Assert.assertEquals(0, unaReralopes.atacar());
+        Assert.assertEquals(27, unaReralopes.atacar());
     }
 
 
@@ -54,7 +54,15 @@ public class ReralopesTest {
         Assert.assertEquals(0, unaReralopes.atacar());
     }
 
+    // Se verifica que un ataque a otra unidad ha sido satisfactorio
+    @Test
+    public void prueba006() {
+        Reralopes otraReralopes = new Reralopes();
 
+        unaReralopes.atacar(otraReralopes);
+
+        Assert.assertEquals(26,otraReralopes.getSalud());
+    }
 
 
 }
