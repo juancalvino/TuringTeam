@@ -20,9 +20,15 @@ public class Reralopes extends Guerreros {
      */
     @Override
     public int atacar() {
-        int danioAtaque = erraElAtaque() ? 0 : this.danio;
+        if(erraElAtaque()){
+            return 0;
+        }
+        return esCritico()? getDanio() * 2: getDanio();
+    }
 
-        return danioAtaque * ataqueEsCritico();
+    @Override
+    public void atacar(Guerreros enemigo) {
+        enemigo.recibirAtaque(atacar());
     }
 
     /**
@@ -55,9 +61,9 @@ public class Reralopes extends Guerreros {
     }
 
     /**
-     * @return Si tiene ataques criticos disponibles, devuelve 2, sino, devuelve 1
+     * @return Si tiene ataques criticos disponibles, devuelve TRUE, sino, devuelve FALSE
      */
-    private int ataqueEsCritico() {
-        return contadorDeAtaquesCriticos-- > 0 ? 2 : 1;
+    private boolean esCritico() {
+        return contadorDeAtaquesCriticos-- > 0;
     }
 }
