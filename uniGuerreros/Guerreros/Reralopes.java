@@ -2,8 +2,8 @@ package Guerreros;
 
 public class Reralopes extends Guerrero {
 
-	boolean ataca;
-	int ataquesConsecutivos;
+	private boolean ataca;
+	private int ataquesConsecutivos;
 	private int concentrado = 0;
 	
     public void posicionar() {
