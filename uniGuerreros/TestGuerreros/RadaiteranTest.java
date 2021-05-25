@@ -79,16 +79,6 @@ public class RadaiteranTest {
 	public void prueba007() {
 		Radaiteran gRadaiteran = new Radaiteran();
 		gRadaiteran.descansar();
-		Assert.assertFalse(gRadaiteran.isActivo());
-	}
-
-	// Prueba descansar y despertar
-	@Test
-	public void prueba008() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		gRadaiteran.descansar();
-		gRadaiteran.descansar();
-		Assert.assertTrue(gRadaiteran.isActivo());
 	}
 
 }

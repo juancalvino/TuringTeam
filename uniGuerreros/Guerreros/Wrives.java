@@ -20,7 +20,7 @@ public class Wrives extends Guerrero {
 		if(!activo) {
 			return 0;
 		}
-		return (atacaNormal = !atacaNormal)? danioBasico * 2 : danioBasico;
+		return (atacaNormal = !atacaNormal)? super.atacar()* 2 : super.atacar();
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public class Reralopes extends Guerrero {
         this.salud = 53;
         this.danioBasico = 27;
         this.ataquesConsecutivos = 0;
-        this.ataca = false;
+        this.ataca = true;
     }
 
     /**
@@ -23,8 +23,7 @@ public class Reralopes extends Guerrero {
     @Override
     public int atacar() {
     	
-    	
-		if (ataquesConsecutivos > 2) {
+		if (ataquesConsecutivos >= 2) {
 			ataquesConsecutivos = 0;
 			ataca = !ataca;
 		}		
@@ -47,7 +46,8 @@ public class Reralopes extends Guerrero {
      *                       post: se resta el valor de 'salud' a partir del 'danioRecibido'. Se reinicia el 'contadorDeAtaques'.
      */
     @Override
-    public void recibirAtaque(int danioRecibido) {
+    public void recibirAtaque(int ataqueEnemigo) {
+    	super.recibirAtaque(ataqueEnemigo);
     	concentrado = 0;
     }
 
