@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# IDEA files
+tp-algo.iml
+.idea
+
+# Eclipse files
+.project
