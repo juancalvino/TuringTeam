@@ -42,7 +42,7 @@ public class Reralopes extends Guerrero {
     }
 
     /**
-     * @param danioRecibido: valor entero que indica el valor del danio recibido de un ataque
+     * @param ataqueEnemigo: valor entero que indica el valor del danio recibido de un ataque
      *                       post: se resta el valor de 'salud' a partir del 'danioRecibido'. Se reinicia el 'contadorDeAtaques'.
      */
     @Override
