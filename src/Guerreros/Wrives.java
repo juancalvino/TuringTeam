@@ -1,38 +1,32 @@
 package Guerreros;
 
 public class Wrives extends Guerrero {
- 
-	private boolean activo;
-	private boolean atacaNormal;
-	
+    private boolean activoParaAtacar, atacaCritico;
 
-	@Override
-	public void posicionar() {
-		this.salud = 108 + powerUp;
-		this.danioBasico = 113;
-		this.atacaNormal = true;
-		this.activo = true;
-	}
-	
+    public Wrives() {
+        this.salud = 108;
+        this.danioBasico = 113;
+        this.atacaCritico = true;
+        this.activoParaAtacar = true;
+    }
 
-	@Override
-	public int atacar() {
-		if(!activo) {
-			return 0;
-		}
-		return (atacaNormal = !atacaNormal)? super.atacar()* 2 : super.atacar();
-	}
+    @Override
+    public int atacar() {
+        if (!activoParaAtacar) {
+            return 0;
+        }
+        return (atacaCritico = !atacaCritico) ? super.atacar() * 2 : super.atacar();
+    }
 
-	@Override
-	public void recibirAtaque (int ataqueEnemigo) {
-		super.recibirAtaque(ataqueEnemigo);
-		activo  = true;
-	}
+    @Override
+    public void recibirAtaque(int ataqueEnemigo) {
+        super.recibirAtaque(ataqueEnemigo);
+        activoParaAtacar = true;
+    }
 
-	@Override
-	public void descansar() {
-		activo = false;
-		salud += 50;
-		powerUp += 50;
-	}
+    @Override
+    public void descansar() {
+        salud += 50;
+        activoParaAtacar = false;
+    }
 }

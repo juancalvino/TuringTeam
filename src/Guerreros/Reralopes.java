@@ -2,53 +2,52 @@ package Guerreros;
 
 public class Reralopes extends Guerrero {
 
-	private boolean ataca;
-	private int ataquesConsecutivos;
-	private int concentrado = 0;
-	
-    public void posicionar() {
+    private boolean ataqueEsSatisfactorio;
+    private int ataquesConsecutivos, ataquesConcentrados;
+
+    public Reralopes() {
         this.salud = 53;
         this.danioBasico = 27;
         this.ataquesConsecutivos = 0;
-        this.ataca = true;
+        this.ataquesConcentrados = 0;
+        this.ataqueEsSatisfactorio = true;
     }
 
+
     /**
-     * Erra 2 de cada 4 ataques. Los primeros 2 ataques (contadorDeAtaques = 0 o 1) serán satisfactorios
-     * mientras que los 2 siguientes serán errados (contadorDeAtaques = 2 o 3).
+     * Erra 2 de cada 4 ataques. Los primeros 2 ataques (ataquesConsecutivos = 0 o 1) serán satisfactorios
+     * mientras que los 2 siguientes serán errados (ataquesConsecutivos = 2 o 3).
      *
      * @return Devuelve el valor de danio del proximo ataque. Devuelve 0 en caso de que sea ataque errado y el daño
      * se duplica si el ataque es critico
      */
     @Override
     public int atacar() {
-    	
-		if (ataquesConsecutivos >= 2) {
-			ataquesConsecutivos = 0;
-			ataca = !ataca;
-		}		
-		
-		int ataque = danioBasico;
+        if (ataquesConsecutivos >= 2) {
+            ataquesConsecutivos = 0;
+            ataqueEsSatisfactorio = !ataqueEsSatisfactorio;
+        }
 
-		if(concentrado > 0) {
-			ataque *= 2;
-			concentrado--;
-		}
-		
-		ataquesConsecutivos++;
-		
-    	return ataca? ataque : 0;
-		
+        int ataque = getDanioBasico();
+
+        if (ataquesConcentrados > 0) {
+            ataque *= 2;
+            ataquesConcentrados--;
+        }
+
+        ataquesConsecutivos++;
+
+        return ataqueEsSatisfactorio ? ataque : 0;
     }
 
     /**
-     * @param ataqueEnemigo: valor entero que indica el valor del danio recibido de un ataque
-     *                       post: se resta el valor de 'salud' a partir del 'danioRecibido'. Se reinicia el 'contadorDeAtaques'.
+     * @param danioDeAtaque: valor entero que indica el valor del danio recibido de un ataque
+     *                       post: se resta el valor de 'salud' a partir del 'danioDeAtaque'. Se reinicia 'ataquesConcentrados'.
      */
     @Override
-    public void recibirAtaque(int ataqueEnemigo) {
-    	super.recibirAtaque(ataqueEnemigo);
-    	concentrado = 0;
+    public void recibirAtaque(int danioDeAtaque) {
+        super.recibirAtaque(danioDeAtaque);
+        ataquesConcentrados = 0;
     }
 
     /**
@@ -56,7 +55,7 @@ public class Reralopes extends Guerrero {
      */
     @Override
     public void descansar() {
-    	concentrado = 3;
+        ataquesConcentrados = 3;
     }
 }
 

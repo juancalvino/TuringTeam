@@ -1,84 +1,63 @@
 package TestGuerreros;
 
+import Guerreros.Guerrero;
+import Guerreros.Radaiteran;
 import org.junit.Assert;
-
 import org.junit.Test;
-
-import Guerreros.*;
 
 public class RadaiteranTest {
 
-	// Prueba crear guerrero Radaiteran
-	@Test
-	public void prueba000() {
-		new Radaiteran();
-	}
+    Guerrero unRadaiteran = new Radaiteran();
+    Guerrero otroRadaiteran = new Radaiteran();
 
-	// Prueba corroborar valores predeterminados del guerrero
-	@Test
-	public void prueba001() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		Assert.assertEquals(36, gRadaiteran.getSalud());
-		Assert.assertEquals(56, gRadaiteran.atacar());
-	}
 
-	// Prueba ataque Radaiteran
-	@Test
-	public void prueba002() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		GuerreroRandom guerrero = new GuerreroRandom(200, 20);
-		gRadaiteran.atacar(guerrero);
-		Assert.assertEquals(144, guerrero.getSalud());
-	}
+    // Prueba crear guerrero Radaiteran
+    @Test
+    public void prueba001() {
+        new Radaiteran();
+    }
 
-	// Prueba ataque doble Radaiteran
-	@Test
-	public void prueba003() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		GuerreroRandom guerrero = new GuerreroRandom(200, 20);
-		gRadaiteran.atacar(guerrero);
-		gRadaiteran.atacar(guerrero);
-		Assert.assertEquals(85, guerrero.getSalud());
-	}
+    // Prueba corroborar valores predeterminados del guerrero
+    // Salud: 36, Danio basico: 56
+    @Test
+    public void prueba002() {
+        Assert.assertEquals(36, unRadaiteran.getSalud());
+        Assert.assertEquals(56, unRadaiteran.atacar());
+    }
 
-	// Prueba ataque quintuple Radaiteran
-	@Test
-	public void prueba004() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		GuerreroRandom guerrero = new GuerreroRandom(500, 20);
-		gRadaiteran.atacar(guerrero);
-		gRadaiteran.atacar(guerrero);
-		gRadaiteran.atacar(guerrero);
-		gRadaiteran.atacar(guerrero);
-		gRadaiteran.atacar(guerrero);
-		Assert.assertEquals(190, guerrero.getSalud());
-	}
+    // Prueba ataque Radaiteran
+    @Test
+    public void prueba003() {
+        unRadaiteran.atacar(otroRadaiteran);
+        Assert.assertEquals(-20, otroRadaiteran.getSalud());
+    }
 
-	// Prueba recibir ataque
-	@Test
-	public void prueba005() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		GuerreroRandom guerrero = new GuerreroRandom(100, 20);
-		guerrero.atacar(gRadaiteran);
-		Assert.assertEquals(16, gRadaiteran.getSalud());
-	}
+    // Prueba de ataques, danio aumenta 3 por cada golpe dado anteriormente
+    @Test
+    public void prueba004() {
+        Assert.assertEquals(56, otroRadaiteran.atacar());
+        Assert.assertEquals(59, otroRadaiteran.atacar());
+        Assert.assertEquals(62, otroRadaiteran.atacar());
+        Assert.assertEquals(65, otroRadaiteran.atacar());
+        Assert.assertEquals(68, otroRadaiteran.atacar());
 
-	// Prueba recibir ataque triple
-	@Test
-	public void prueba006() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		GuerreroRandom guerrero = new GuerreroRandom(100, 5);
-		guerrero.atacar(gRadaiteran);
-		guerrero.atacar(gRadaiteran);
-		guerrero.atacar(gRadaiteran);
-		Assert.assertEquals(21, gRadaiteran.getSalud());
-	}
+    }
 
-	// Prueba descansar
-	@Test
-	public void prueba007() {
-		Radaiteran gRadaiteran = new Radaiteran();
-		gRadaiteran.descansar();
-	}
+    // Prueba recibir ataque
+    @Test
+    public void prueba005() {
+        unRadaiteran.recibirAtaque(10);
+        Assert.assertEquals(26, unRadaiteran.getSalud());
+    }
 
+    // Prueba recibir ataque triple, recibe danio normal sin modificacion
+    @Test
+    public void prueba006() {
+        unRadaiteran.recibirAtaque(5);
+        Assert.assertEquals(31, unRadaiteran.getSalud());
+        unRadaiteran.recibirAtaque(5);
+        Assert.assertEquals(26, unRadaiteran.getSalud());
+        unRadaiteran.recibirAtaque(5);
+        Assert.assertEquals(21, unRadaiteran.getSalud());
+    }
 }
