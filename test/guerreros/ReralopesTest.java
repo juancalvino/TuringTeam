@@ -7,7 +7,7 @@ import org.junit.Assert;
 public class ReralopesTest {
 
 	Guerrero reralopes = new Reralopes();
-	Guerrero enemigo = new GuerreroTest(0, 0);
+	Guerrero enemigo = new GuerreroHack(0, 0);
 
 	// Se crea una nueva instancia de Reralopes
 	@Test
@@ -28,7 +28,7 @@ public class ReralopesTest {
 	// Se verifica que unaReralopes erra 2 de 4 ataques
 	@Test
 	public void prueba003() {
-		enemigo = new GuerreroTest(27 * 3, 100);
+		enemigo = new GuerreroHack(27 * 3, 100);
 
 		reralopes.atacar(enemigo);
 		Assert.assertEquals(27 * 2, enemigo.getSalud());
@@ -50,7 +50,7 @@ public class ReralopesTest {
 	// Se verifica que al descansar, sus siguientes 3 ataques son criticos
 	@Test
 	public void prueba004() {
-		enemigo = new GuerreroTest(135, 100);
+		enemigo = new GuerreroHack(135, 100);
 
 		reralopes.descansar();
 
@@ -83,7 +83,7 @@ public class ReralopesTest {
 	// decir, pierde su efecto descansado)
 	@Test
 	public void prueba006() {
-		enemigo = new GuerreroTest(81, 10);
+		enemigo = new GuerreroHack(81, 10);
 
 		reralopes.descansar();
 		reralopes.atacar(enemigo);

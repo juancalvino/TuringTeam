@@ -1,8 +1,8 @@
-package testGuerreros;
+package guerreros;
 
-public class GuerreroTest extends Guerrero {
+public class GuerreroHack extends Guerrero {
 
-	public GuerreroTest(int salud, int danio) {
+	public GuerreroHack(int salud, int danio) {
 		this.salud = salud;
 		this.danioBasico = danio;
 	}

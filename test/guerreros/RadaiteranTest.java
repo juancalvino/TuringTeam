@@ -6,7 +6,7 @@ import org.junit.Test;
 public class RadaiteranTest {
 
 	Guerrero radaiteran = new Radaiteran();
-	Guerrero enemigo = new GuerreroTest(0, 0);
+	Guerrero enemigo = new GuerreroHack(0, 0);
 
 	// Prueba crear guerrero Radaiteran
 	@Test
@@ -32,7 +32,7 @@ public class RadaiteranTest {
 	// Prueba de ataques, danio aumenta 3 por cada golpe dado anteriormente
 	@Test
 	public void prueba004() {
-		enemigo = new GuerreroTest(310, 100);
+		enemigo = new GuerreroHack(310, 100);
 
 		radaiteran.atacar(enemigo);
 		Assert.assertEquals(254, enemigo.getSalud());

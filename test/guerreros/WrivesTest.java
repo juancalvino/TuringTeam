@@ -6,7 +6,7 @@ import org.junit.Test;
 public class WrivesTest {
 
 	Guerrero wrives = new Wrives();
-	Guerrero enemigo = new GuerreroTest(0, 0);
+	Guerrero enemigo = new GuerreroHack(0, 0);
 
 	// Crear un guerrero Wrives
 
@@ -31,7 +31,7 @@ public class WrivesTest {
 	 */
 	@Test
 	public void prueba003() {
-		enemigo = new GuerreroTest(113 * 6, 100);
+		enemigo = new GuerreroHack(113 * 6, 100);
 
 		wrives.atacar(enemigo);
 		Assert.assertEquals(113 * 5, enemigo.getSalud());
@@ -52,7 +52,7 @@ public class WrivesTest {
 	 */
 	@Test
 	public void prueba004() {
-		enemigo = new GuerreroTest(100, 4);
+		enemigo = new GuerreroHack(100, 4);
 		enemigo.atacar(wrives);
 		Assert.assertEquals(100, wrives.getSalud());
 	}
@@ -62,7 +62,7 @@ public class WrivesTest {
 	 */
 	@Test
 	public void prueba005() {
-		enemigo = new GuerreroTest(113, 4);
+		enemigo = new GuerreroHack(113, 4);
 
 		Assert.assertEquals(108, wrives.getSalud());
 

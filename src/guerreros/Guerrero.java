@@ -5,7 +5,8 @@ public abstract class Guerrero {
 
 	protected int salud;
 	protected int danioBasico;
-
+	
+	
 	public int getSalud() {
 		return this.salud;
 	}

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class NortaichianTest {
 	Guerrero nortaichian = new Nortaichian();
-	Guerrero enemigo = new GuerreroTest(0, 0);
+	Guerrero enemigo = new GuerreroHack(0, 0);
 
 	// Se crea una nueva instancia de Nortaichian
 	@Test
@@ -61,7 +61,7 @@ public class NortaichianTest {
 	 */
 	@Test
 	public void prueba006() {
-		enemigo = new GuerreroTest(100, 65);
+		enemigo = new GuerreroHack(100, 65);
 
 		enemigo.atacar(nortaichian);
 		Assert.assertEquals(1, nortaichian.getSalud());
@@ -76,7 +76,7 @@ public class NortaichianTest {
 	 */
 	@Test
 	public void prueba007() {
-		enemigo = new GuerreroTest(56, 20);
+		enemigo = new GuerreroHack(56, 20);
 
 		nortaichian.descansar();
 
