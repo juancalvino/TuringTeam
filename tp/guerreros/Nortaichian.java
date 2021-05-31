@@ -1,4 +1,5 @@
-package Guerreros;
+package guerreros;
+
 
 public class Nortaichian extends Guerrero {
 
@@ -10,7 +11,8 @@ public class Nortaichian extends Guerrero {
         this.danioBasico = 18;
     }
 
-    public int atacar() {
+    @Override
+    protected int atacar() {
         this.salud += salud * 0.04;
         return (turnosEnfurecido > 0)
                 ? super.atacar() * 2
@@ -28,7 +30,7 @@ public class Nortaichian extends Guerrero {
     }
 
     @Override
-    public void recibirAtaque(int ataque) {
+    protected void recibirAtaque(int ataque) {
         turnosEnfurecido = 2;
 
         int ataqueRecibido = ataque;

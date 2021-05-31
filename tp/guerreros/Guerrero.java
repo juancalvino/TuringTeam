@@ -1,4 +1,4 @@
-package Guerreros;
+package guerreros;
 
 public abstract class Guerrero {
     // TODO: 29/5/2021 Implementar el sistema de prioridad para las colas.
@@ -11,7 +11,7 @@ public abstract class Guerrero {
         return this.salud;
     }
 
-    public int getDanioBasico() {
+    protected int getDanioBasico() {
         return this.danioBasico;
     }
 

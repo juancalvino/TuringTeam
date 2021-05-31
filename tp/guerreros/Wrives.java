@@ -1,6 +1,7 @@
-package Guerreros;
+package guerreros;
 
 public class Wrives extends Guerrero {
+	
     private boolean activoParaAtacar;
     private boolean atacaCritico;
 
