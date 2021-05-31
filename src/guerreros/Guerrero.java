@@ -11,10 +11,6 @@ public abstract class Guerrero {
         return this.salud;
     }
 
-    protected int getDanioBasico() {
-        return this.danioBasico;
-    }
-
     public void descansar() {
     }
 
