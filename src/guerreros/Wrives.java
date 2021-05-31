@@ -22,7 +22,7 @@ public class Wrives extends Guerrero {
 
     @Override
     public void recibirAtaque(int ataqueEnemigo) {
-        super.recibirAtaque(ataqueEnemigo);
+        super.recibirAtaque(ataqueEnemigo*2);
         activoParaAtacar = true;
     }
 

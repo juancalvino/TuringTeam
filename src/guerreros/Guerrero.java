@@ -15,7 +15,7 @@ public abstract class Guerrero {
     }
 
     protected int atacar() {
-        return danioBasico;
+        return this.danioBasico;
     }
 
     public void atacar(Guerrero enemigo) {

@@ -29,7 +29,7 @@ public class Reralopes extends Guerrero {
             ataqueEsSatisfactorio = !ataqueEsSatisfactorio;
         }
 
-        int ataque = getDanioBasico();
+        int ataque = super.atacar();
 
         if (ataquesConcentrados > 0) {
             ataque *= 2;
