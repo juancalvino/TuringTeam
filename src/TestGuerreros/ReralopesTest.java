@@ -1,15 +1,15 @@
-package TestGuerreros;
+package testGuerreros;
 
-import Guerreros.Guerrero;
-import Guerreros.Reralopes;
-import org.junit.Assert;
+import guerreros.*;
 import org.junit.Test;
+import org.junit.Assert;
+
 
 public class ReralopesTest {
 
-    Guerrero unaReralopes = new Reralopes();
-    Guerrero otraReralopes = new Reralopes();
-
+    Guerrero reralopes = new Reralopes();
+    Guerrero enemigo  = new GuerreroTest(0,0);
+    
     // Se crea una nueva instancia de Reralopes
     @Test
     public void prueba001() {
@@ -20,51 +20,80 @@ public class ReralopesTest {
     // Salud: 53, Danio basico: 27
     @Test
     public void prueba002() {
-        Assert.assertEquals(53, unaReralopes.getSalud());
-        Assert.assertEquals(27, unaReralopes.getDanioBasico());
+        Assert.assertEquals(53, reralopes.getSalud());
+        reralopes.atacar(enemigo);
+        Assert.assertEquals(-27, enemigo.getSalud());
     }
 
     // Se verifica que unaReralopes erra 2 de 4 ataques
     @Test
     public void prueba003() {
-        Assert.assertEquals(27, unaReralopes.atacar());
-        Assert.assertEquals(27, unaReralopes.atacar());
-        Assert.assertEquals(0, unaReralopes.atacar());
-        Assert.assertEquals(0, unaReralopes.atacar());
-        Assert.assertEquals(27, unaReralopes.atacar());
+    	enemigo = new GuerreroTest(27*3,100);
+
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(27*2,enemigo.getSalud() );
+    
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(27,enemigo.getSalud() );
+
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(27,enemigo.getSalud() );
+
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(27,enemigo.getSalud() );
+
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(0,enemigo.getSalud() );
+
+    
     }
 
 
     // Se verifica que al descansar, sus siguientes 3 ataques son criticos
     @Test
     public void prueba004() {
-        unaReralopes.descansar();
+    	enemigo = new GuerreroTest(135 , 100 );
+    	
+    	reralopes.descansar();
 
-        Assert.assertEquals(54, unaReralopes.atacar());
-        Assert.assertEquals(54, unaReralopes.atacar());
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(81, enemigo.getSalud());
+
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(27, enemigo.getSalud());
+
 
         // El tercer ataque es errado pero de todas formas consume un ataque critico
-        Assert.assertEquals(0, unaReralopes.atacar());
-        Assert.assertEquals(0, unaReralopes.atacar());
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(27, enemigo.getSalud());
 
-        Assert.assertEquals(27, unaReralopes.atacar());
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(27, enemigo.getSalud());
+
+    	reralopes.atacar(enemigo);
+        Assert.assertEquals(0, enemigo.getSalud());
     }
 
     // Se verifica que un ataque a otra unidad ha sido satisfactoria
     @Test
     public void prueba005() {
-        unaReralopes.atacar(otraReralopes);
-        Assert.assertEquals(26, otraReralopes.getSalud());
+    	enemigo = new Reralopes();
+        reralopes.atacar(enemigo);
+        Assert.assertEquals(26, enemigo.getSalud());
     }
 
     // Se verifica que unaReralopes se desconcentra luego de recibir un ataque (es decir, pierde su efecto descansado)
     @Test
     public void prueba006() {
-        unaReralopes.descansar();
-        Assert.assertEquals(54, unaReralopes.atacar());
+        enemigo = new GuerreroTest(81,10);
+    	
+    	reralopes.descansar();
+        reralopes.atacar(enemigo);
+    	
+        Assert.assertEquals(27, enemigo.getSalud());
 
-        otraReralopes.atacar(unaReralopes);
-
-        Assert.assertEquals(27, unaReralopes.atacar());
+        enemigo.atacar(reralopes);
+        reralopes.atacar(enemigo);
+        Assert.assertEquals(0, enemigo.getSalud());
     }
 }

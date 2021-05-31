@@ -1,99 +1,103 @@
-package TestGuerreros;
+package testGuerreros;
 
-import Guerreros.Guerrero;
-import Guerreros.Nortaichian;
+import guerreros.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class NortaichianTest {
+	Guerrero nortaichian = new Nortaichian();
+	Guerrero enemigo = new GuerreroTest(0, 0);
 
-    Guerrero unNortaichian = new Nortaichian();
-    Guerrero otroNortaichian = new Nortaichian();
+	// Se crea una nueva instancia de Nortaichian
+	@Test
+	public void prueba001() {
+		new Nortaichian();
+	}
 
-    // Se crea una nueva instancia de Nortaichian
-    @Test
-    public void prueba001() {
-        Nortaichian prueba = new Nortaichian();
+	// Se verifica que los valores inicializados de la instancia coincidan con los
+	// senialados por la consigna
+	// Salud: 66
+	@Test
+	public void prueba002() {
+		Assert.assertEquals(66, nortaichian.getSalud());
 
-        Assert.assertNotNull(prueba);
-    }
+		nortaichian.atacar(enemigo);
+		Assert.assertEquals(-18, enemigo.getSalud());
+	}
 
-    // Se verifica que los valores inicializados de la instancia coincidan con los senialados por la consigna
-    // Salud: 66, Danio Basico: 18
-    @Test
-    public void prueba002() {
-        Assert.assertEquals(66, unNortaichian.getSalud());
-        Assert.assertEquals(18, unNortaichian.getDanioBasico());
-    }
+	// Danio Basico: 18
+	@Test
+	public void prueba003() {
+		nortaichian.atacar(enemigo);
+		Assert.assertEquals(-18, enemigo.getSalud());
+	}
 
-    // Se verifica que unNortaichian ataca a otro satisfactoriamente
-    @Test
-    public void prueba003() {
-        unNortaichian.atacar(otroNortaichian);
-        // la salud inicial de un 'otroNortaichian' es igual a 66
-        Assert.assertEquals(48, otroNortaichian.getSalud());
-    }
+	/*
+	 * 'unNortaichian' cada vez que ataca se cura un 4% de su salud
+	 */
+	@Test
+	public void prueba004() {
+		nortaichian.atacar(enemigo);
+		Assert.assertEquals(68, nortaichian.getSalud());
+	}
 
-    /*
-     * 'unNortaichian' cada vez que ataca se cura un 4% de su salud
-     */
-    @Test
-    public void prueba004() {
-        unNortaichian.atacar(otroNortaichian);
-        Assert.assertEquals(68, unNortaichian.getSalud());
-    }
+	/*
+	 * 'unNortaichian' ataca a 'otroNortaichian', 'otroNortaichian' ataca enfurecido
+	 * (x2)
+	 */
+	@Test
+	public void prueba005() {
+		enemigo = new Nortaichian();
 
+		nortaichian.atacar(enemigo);
+		Assert.assertEquals(48, enemigo.getSalud());
 
-    /*
-     * 'unNortaichian' ataca a 'otroNortaichian', 'otroNortaichian' ataca enfurecido (x2)
-     */
-    @Test
-    public void prueba005() {
-        unNortaichian.atacar(otroNortaichian);
-        otroNortaichian.atacar(unNortaichian);
+		enemigo.atacar(nortaichian);
+		Assert.assertEquals(32, nortaichian.getSalud());
+		Assert.assertEquals(49, enemigo.getSalud());
+	}
 
-        Assert.assertEquals(49, otroNortaichian.getSalud());
-        Assert.assertEquals(32, unNortaichian.getSalud());
-    }
+	/*
+	 * 'unNortaichian' recibe danio, pero luego descansa y recupera toda su salud.
+	 */
+	@Test
+	public void prueba006() {
+		enemigo = new GuerreroTest(100, 65);
 
-    /*
-     * 'unNortaichian' recibe danio, pero luego descansa y recupera toda su salud.
-     */
-    @Test
-    public void prueba006() {
-        otroNortaichian.atacar(unNortaichian);
+		enemigo.atacar(nortaichian);
+		Assert.assertEquals(1, nortaichian.getSalud());
 
-        Assert.assertEquals(48, unNortaichian.getSalud());
-        unNortaichian.descansar();
+		nortaichian.descansar();
+		Assert.assertEquals(66, nortaichian.getSalud());
+	}
 
-        Assert.assertEquals(66, unNortaichian.getSalud());
-    }
+	/*
+	 * 'unNortaichian' descansa y durante 2 turnos no puede atacar (infligen 0
+	 * danio) a 'otroNortaichian', pero se reduce el danio recibido a la mitad
+	 */
+	@Test
+	public void prueba007() {
+		enemigo = new GuerreroTest(56, 20);
 
-    /*
-     * 'unNortaichian' descansa y durante 2 turnos no puede
-     * atacar (infligen 0 danio) a 'otroNortaichian', pero se reduce el danio recibido a la mitad
-     */
-    @Test
-    public void prueba008() {
-        unNortaichian.descansar();
+		nortaichian.descansar();
 
-        unNortaichian.atacar(otroNortaichian);
-        Assert.assertEquals(66, otroNortaichian.getSalud());
+		nortaichian.atacar(enemigo);
+		Assert.assertEquals(56, enemigo.getSalud());
 
-        otroNortaichian.atacar(unNortaichian);
-        Assert.assertEquals(57, unNortaichian.getSalud());
+		enemigo.atacar(nortaichian);
+		Assert.assertEquals(56, nortaichian.getSalud());
 
-        unNortaichian.atacar(otroNortaichian);
-        Assert.assertEquals(68, otroNortaichian.getSalud());
+		nortaichian.atacar(enemigo);
+		Assert.assertEquals(56, enemigo.getSalud());
 
-        otroNortaichian.atacar(unNortaichian);
-        Assert.assertEquals(39, unNortaichian.getSalud());
+		enemigo.atacar(nortaichian);
+		Assert.assertEquals(36, nortaichian.getSalud());
 
-        unNortaichian.atacar(otroNortaichian);
-        Assert.assertEquals(34, otroNortaichian.getSalud());
+		nortaichian.atacar(enemigo);
+		Assert.assertEquals(20, enemigo.getSalud());
 
-        otroNortaichian.atacar(unNortaichian);
-        Assert.assertEquals(4, unNortaichian.getSalud());
-    }
+		enemigo.atacar(nortaichian);
+		Assert.assertEquals(17, nortaichian.getSalud());
+	}
 
 }
