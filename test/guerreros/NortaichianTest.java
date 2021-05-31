@@ -1,6 +1,5 @@
-package testGuerreros;
+package guerreros;
 
-import guerreros.*;
 import org.junit.Assert;
 import org.junit.Test;
 
