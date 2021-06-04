@@ -79,18 +79,18 @@ public class ReralopesTest {
 	}
 
 	// Se verifica que unaReralopes se desconcentra luego de recibir un ataque (es
-	// decir, pierde su efecto descansado)
+	// decir, pierde su efecto descansado de inflijir tres golpes criticos (x2))
 	@Test
 	public void prueba006() {
-		enemigo = new GuerreroHack(81, 10);
-
+		enemigo = new GuerreroHack(135, 10);
+		reralopes.descansar();
+		
 		enemigo.recibirAtaque(reralopes.atacar());
 		enemigo.recibirAtaque(reralopes.atacar());
-
 		Assert.assertEquals(27, enemigo.getSalud());
 
 		reralopes.recibirAtaque(enemigo.atacar());
 		enemigo.recibirAtaque(reralopes.atacar());
-		Assert.assertEquals(0, enemigo.getSalud());
+		Assert.assertEquals(27, enemigo.getSalud());
 	}
 }
