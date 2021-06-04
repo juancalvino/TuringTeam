@@ -25,7 +25,7 @@ public class RadaiteranTest {
 	// Danio basico: 56
 	@Test
 	public void prueba003() {
-		radaiteran.atacar(enemigo);
+		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(-56, enemigo.getSalud());
 	}
 
@@ -34,19 +34,19 @@ public class RadaiteranTest {
 	public void prueba004() {
 		enemigo = new GuerreroHack(310, 100);
 
-		radaiteran.atacar(enemigo);
+		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(254, enemigo.getSalud());
 
-		radaiteran.atacar(enemigo);
+		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(195, enemigo.getSalud());
 
-		radaiteran.atacar(enemigo);
+		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(133, enemigo.getSalud());
 
-		radaiteran.atacar(enemigo);
+		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(68, enemigo.getSalud());
 
-		radaiteran.atacar(enemigo);
+		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 
 	}
@@ -57,7 +57,7 @@ public class RadaiteranTest {
 		radaiteran.descansar();
 		Assert.assertEquals(36, radaiteran.getSalud());
 
-		radaiteran.atacar(enemigo);
+		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(-56, enemigo.getSalud());
 		//prueba
 
