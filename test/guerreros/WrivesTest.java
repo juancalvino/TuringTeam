@@ -22,7 +22,7 @@ public class WrivesTest {
 	public void prueba002() {
 		Assert.assertEquals(108, wrives.getSalud());
 
-		wrives.atacar(enemigo);
+		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(-113, enemigo.getSalud());
 	}
 
@@ -33,16 +33,16 @@ public class WrivesTest {
 	public void prueba003() {
 		enemigo = new GuerreroHack(113 * 6, 100);
 
-		wrives.atacar(enemigo);
+		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(113 * 5, enemigo.getSalud());
 
-		wrives.atacar(enemigo);
+		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(113 * 3, enemigo.getSalud());
 
-		wrives.atacar(enemigo);
+		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(113 * 2, enemigo.getSalud());
 
-		wrives.atacar(enemigo);
+		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 
 	}
@@ -53,7 +53,7 @@ public class WrivesTest {
 	@Test
 	public void prueba004() {
 		enemigo = new GuerreroHack(100, 4);
-		enemigo.atacar(wrives);
+		wrives.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(100, wrives.getSalud());
 	}
 
@@ -71,15 +71,15 @@ public class WrivesTest {
 		Assert.assertEquals(158, wrives.getSalud());
 
 		// wrives no le quita vida al enemigo porque esta en 'modo pacifista'
-		wrives.atacar(enemigo);
+		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(113, enemigo.getSalud());
 
 		// wrives recibe un ataque doble y se pone activo para atacar
-		enemigo.atacar(wrives);
+		wrives.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(150, wrives.getSalud());
 
 		// wrives ataca al enemigo
-		wrives.atacar(enemigo);
+		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 	}
 }
