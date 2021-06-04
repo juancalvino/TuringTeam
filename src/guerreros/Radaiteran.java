@@ -15,11 +15,6 @@ public class Radaiteran extends Guerrero {
 		return super.atacar() + getDanioExtraPorAtaques();
 	}
 
-	@Override
-	public void atacar(Guerrero enemigo) {
-		super.atacar(enemigo);
-	}
-
 	private int getDanioExtraPorAtaques() {
 		return this.contadorDeAtaques++ * 3;
 	}

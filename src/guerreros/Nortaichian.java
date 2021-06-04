@@ -11,23 +11,22 @@ public class Nortaichian extends Guerrero {
 	}
 
 	@Override
-	protected int atacar() {
+	public int atacar() {
+		
+		if (turnosPiedra > 0) {
+			turnosPiedra--;
+			return 0;
+		}
+
+		--turnosEnfurecido;
 		this.salud += salud * 0.04;
+		
 		return (turnosEnfurecido > 0) ? super.atacar() * 2 : super.atacar();
 	}
 
+	
 	@Override
-	public void atacar(Guerrero enemigo) {
-		if (turnosPiedra > 0) {
-			turnosPiedra--;
-		} else {
-			super.atacar(enemigo);
-		}
-		--turnosEnfurecido;
-	}
-
-	@Override
-	protected void recibirAtaque(int ataque) {
+	public void recibirAtaque(int ataque) {
 		turnosEnfurecido = 2;
 
 		int ataqueRecibido = ataque;
