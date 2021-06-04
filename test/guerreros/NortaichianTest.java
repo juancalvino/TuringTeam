@@ -20,14 +20,14 @@ public class NortaichianTest {
 	public void prueba002() {
 		Assert.assertEquals(66, nortaichian.getSalud());
 
-		nortaichian.atacar(enemigo);
+		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(-18, enemigo.getSalud());
 	}
 
 	// Danio Basico: 18
 	@Test
 	public void prueba003() {
-		nortaichian.atacar(enemigo);
+		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(-18, enemigo.getSalud());
 	}
 
@@ -36,7 +36,7 @@ public class NortaichianTest {
 	 */
 	@Test
 	public void prueba004() {
-		nortaichian.atacar(enemigo);
+		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(68, nortaichian.getSalud());
 	}
 
@@ -48,10 +48,10 @@ public class NortaichianTest {
 	public void prueba005() {
 		enemigo = new Nortaichian();
 
-		nortaichian.atacar(enemigo);
+		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(48, enemigo.getSalud());
 
-		enemigo.atacar(nortaichian);
+		nortaichian.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(32, nortaichian.getSalud());
 		Assert.assertEquals(49, enemigo.getSalud());
 	}
@@ -63,7 +63,7 @@ public class NortaichianTest {
 	public void prueba006() {
 		enemigo = new GuerreroHack(100, 65);
 
-		enemigo.atacar(nortaichian);
+		nortaichian.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(1, nortaichian.getSalud());
 
 		nortaichian.descansar();
@@ -80,22 +80,22 @@ public class NortaichianTest {
 
 		nortaichian.descansar();
 
-		nortaichian.atacar(enemigo);
+		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(56, enemigo.getSalud());
 
-		enemigo.atacar(nortaichian);
+		nortaichian.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(56, nortaichian.getSalud());
 
-		nortaichian.atacar(enemigo);
+		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(56, enemigo.getSalud());
 
-		enemigo.atacar(nortaichian);
+		nortaichian.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(36, nortaichian.getSalud());
 
-		nortaichian.atacar(enemigo);
+		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(20, enemigo.getSalud());
 
-		enemigo.atacar(nortaichian);
+		nortaichian.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(17, nortaichian.getSalud());
 	}
 

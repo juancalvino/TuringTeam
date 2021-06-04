@@ -8,6 +8,8 @@ public class Nortaichian extends Guerrero {
 	public Nortaichian() {
 		this.salud = 66;
 		this.danioBasico = 18;
+		this.turnosEnfurecido = 0;
+		this.turnosPiedra = 0;
 	}
 
 	@Override
