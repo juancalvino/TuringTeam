@@ -21,7 +21,7 @@ public class ReralopesTest {
 	@Test
 	public void prueba002() {
 		Assert.assertEquals(53, reralopes.getSalud());
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(-27, enemigo.getSalud());
 	}
 
@@ -30,19 +30,19 @@ public class ReralopesTest {
 	public void prueba003() {
 		enemigo = new GuerreroHack(27 * 3, 100);
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27 * 2, enemigo.getSalud());
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 
 	}
@@ -54,20 +54,20 @@ public class ReralopesTest {
 
 		reralopes.descansar();
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(81, enemigo.getSalud());
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());
 
 		// El tercer ataque es errado pero de todas formas consume un ataque critico
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());
 
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 	}
 
@@ -75,7 +75,7 @@ public class ReralopesTest {
 	@Test
 	public void prueba005() {
 		enemigo = new Reralopes();
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(26, enemigo.getSalud());
 	}
 
@@ -85,13 +85,13 @@ public class ReralopesTest {
 	public void prueba006() {
 		enemigo = new GuerreroHack(81, 10);
 
-		reralopes.descansar();
-		reralopes.atacar(enemigo);
+		enemigo.recibirAtaque(reralopes.atacar());
+		enemigo.recibirAtaque(reralopes.atacar());
 
 		Assert.assertEquals(27, enemigo.getSalud());
 
-		enemigo.atacar(reralopes);
-		reralopes.atacar(enemigo);
+		reralopes.recibirAtaque(enemigo.atacar());
+		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 	}
 }
