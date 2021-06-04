@@ -59,6 +59,7 @@ public class RadaiteranTest {
 
 		radaiteran.atacar(enemigo);
 		Assert.assertEquals(-56, enemigo.getSalud());
+		//prueba
 
 	}
 }
