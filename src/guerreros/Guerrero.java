@@ -1,6 +1,6 @@
 package guerreros;
 
-public abstract class Guerrero {
+public abstract class Guerrero implements Combatiente{
 	// TODO: 29/5/2021 Implementar el sistema de prioridad para las colas.
 
 	protected int salud;
@@ -14,15 +14,15 @@ public abstract class Guerrero {
 	public void descansar() {
 	}
 
-	protected int atacar() {
+	public int atacar() {
 		return this.danioBasico;
 	}
 
-	public void atacar(Guerrero enemigo) {
+	protected void atacar(Guerrero enemigo) {
 		enemigo.recibirAtaque(this.atacar());
 	}
 
-	protected void recibirAtaque(int ataqueEnemigo) {
+	public void recibirAtaque(int ataqueEnemigo) {
 		salud -= ataqueEnemigo;
 	}
 }
