@@ -1,6 +1,6 @@
 package guerreros;
 
-public class EjercitoPropio extends EjercitoAliado implements Comparable<EjercitoAliado>{
+public class EjercitoPropio extends EjercitoAliado {
 
 	EjercitoPropio instancia;
 
@@ -19,11 +19,5 @@ public class EjercitoPropio extends EjercitoAliado implements Comparable<Ejercit
 		this.cola.add(ejercitoAliados);
 	}
 
-	@Override
-	public int compareTo(EjercitoAliado other) {
-		return other.tipo == tipo.ALIADO
-				? 1 : 0;
-	}
 
-	
 }
