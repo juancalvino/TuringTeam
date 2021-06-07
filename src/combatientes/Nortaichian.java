@@ -1,4 +1,6 @@
-package guerreros;
+package combatientes;
+
+import java.util.List;
 
 public class Nortaichian extends Guerrero {
 
@@ -44,5 +46,10 @@ public class Nortaichian extends Guerrero {
 	public void descansar() {
 		this.salud = 66;
 		turnosPiedra = 2;
+	}
+	
+	@Override
+	protected Guerrero crearUnidad() {
+		return new Nortaichian();
 	}
 }

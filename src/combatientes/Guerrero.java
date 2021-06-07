@@ -1,4 +1,6 @@
-package guerreros;
+package combatientes;
+
+import java.util.ArrayList;
 
 public abstract class Guerrero implements Combatiente, Comparable<Guerrero>{
 
@@ -43,5 +45,17 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero>{
 	public boolean getTerminoUnaBatalla() {
 		return this.terminoUnaBatalla;
 	}
+	
+	public ArrayList<Guerrero> crearLista(int cantidad){
+		ArrayList<Guerrero> lista = new ArrayList<Guerrero>();
+		
+		for(int i=0; i<cantidad; i++) {
+			lista.add(crearUnidad());
+		}
+		
+		return lista;
+	};
+	
+	protected abstract Guerrero crearUnidad();
 	
 }

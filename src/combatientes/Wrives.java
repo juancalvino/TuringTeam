@@ -1,4 +1,4 @@
-package guerreros;
+package combatientes;
 
 public class Wrives extends Guerrero {
 
@@ -30,5 +30,10 @@ public class Wrives extends Guerrero {
 	public void descansar() {
 		salud += 50;
 		activoParaAtacar = false;
+	}
+	
+	@Override
+	protected Guerrero crearUnidad() {
+		return new Wrives();
 	}
 }

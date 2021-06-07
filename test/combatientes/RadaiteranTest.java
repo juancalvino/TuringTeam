@@ -1,7 +1,10 @@
-package guerreros;
+package combatientes;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import combatientes.Guerrero;
+import combatientes.Radaiteran;
 
 public class RadaiteranTest {
 

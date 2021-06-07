@@ -1,4 +1,4 @@
-package guerreros;
+package combatientes;
 
 import org.junit.Assert;
 import org.junit.Test;

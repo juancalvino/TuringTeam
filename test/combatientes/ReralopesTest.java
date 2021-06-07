@@ -1,6 +1,10 @@
-package guerreros;
+package combatientes;
 
 import org.junit.Test;
+
+import combatientes.Guerrero;
+import combatientes.Reralopes;
+
 import org.junit.Assert;
 
 public class ReralopesTest {

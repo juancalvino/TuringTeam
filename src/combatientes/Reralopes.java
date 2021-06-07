@@ -1,4 +1,4 @@
-package guerreros;
+package combatientes;
 
 public class Reralopes extends Guerrero {
 
@@ -59,5 +59,10 @@ public class Reralopes extends Guerrero {
 	@Override
 	public void descansar() {
 		ataquesConcentrados = 3;
+	}
+	
+	@Override
+	protected Guerrero crearUnidad() {
+		return new Reralopes();
 	}
 }

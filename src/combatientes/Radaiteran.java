@@ -1,4 +1,4 @@
-package guerreros;
+package combatientes;
 
 public class Radaiteran extends Guerrero {
 
@@ -17,5 +17,10 @@ public class Radaiteran extends Guerrero {
 
 	private int getDanioExtraPorAtaques() {
 		return this.contadorDeAtaques++ * 3;
+	}
+	
+	@Override
+	protected Guerrero crearUnidad() {
+		return new Radaiteran();
 	}
 }

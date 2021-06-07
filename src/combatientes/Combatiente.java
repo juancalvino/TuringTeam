@@ -1,4 +1,4 @@
-package guerreros;
+package combatientes;
 
 public interface Combatiente {
 
