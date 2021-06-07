@@ -2,19 +2,19 @@ package guerreros;
 
 import java.util.Queue;
 
-public abstract class Ejercito implements Combatiente{
+public abstract class Ejercito implements Combatiente {
 
 	protected TipoEjercito tipo;
 	Queue<Combatiente> cola;
-	
+
 	@Override
 	public int getSalud() {
 		int saludTotal = 0;
-		
+
 		for (Combatiente combatiente : cola) {
 			saludTotal += combatiente.getSalud();
 		}
-		
+
 		return saludTotal;
 	}
 
@@ -34,5 +34,5 @@ public abstract class Ejercito implements Combatiente{
 			combatiente.descansar();
 		}
 	}
-		
+
 }
