@@ -19,7 +19,7 @@ public class NortaichianTest {
 	@Test
 	public void prueba002() {
 		Assert.assertEquals(66, nortaichian.getSalud());
-
+		
 		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(-18, enemigo.getSalud());
 	}

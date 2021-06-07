@@ -6,6 +6,9 @@ public abstract class Guerrero implements Combatiente{
 	protected int danioBasico;
 	
 	
+	public Guerrero() {
+	}
+	
 	public int getSalud() {
 		return this.salud;
 	}
@@ -20,4 +23,5 @@ public abstract class Guerrero implements Combatiente{
 	public void recibirAtaque(int ataqueEnemigo) {
 		salud -= ataqueEnemigo;
 	}
+	
 }
