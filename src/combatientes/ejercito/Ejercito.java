@@ -1,7 +1,12 @@
-package combatientes;
+package combatientes.ejercito;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
+
+import combatientes.Combatiente;
+import combatientes.NegativeNumberException;
+import combatientes.Verificador;
+import combatientes.guerrero.Guerrero;
 
 
 public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {

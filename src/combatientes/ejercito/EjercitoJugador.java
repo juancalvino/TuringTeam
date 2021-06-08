@@ -1,4 +1,7 @@
-package combatientes;
+package combatientes.ejercito;
+
+import combatientes.Combatiente;
+import combatientes.guerrero.Guerrero;
 
 public class EjercitoJugador extends Ejercito {
 	

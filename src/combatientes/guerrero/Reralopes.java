@@ -1,4 +1,4 @@
-package combatientes;
+package combatientes.guerrero;
 
 public class Reralopes extends Guerrero {
 

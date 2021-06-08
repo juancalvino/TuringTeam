@@ -1,5 +1,6 @@
-package combatientes;
+package combatientes.ejercito;
 
+import combatientes.guerrero.Guerrero;
 
 public class EjercitoUnico extends Ejercito {
 

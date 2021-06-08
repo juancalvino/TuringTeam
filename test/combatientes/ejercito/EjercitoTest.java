@@ -1,8 +1,11 @@
-package combatientes;
+package combatientes.ejercito;
 
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import combatientes.guerrero.Reralopes;
+import combatientes.guerrero.Wrives;
 
 public class EjercitoTest {
 

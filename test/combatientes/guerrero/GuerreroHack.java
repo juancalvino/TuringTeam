@@ -1,6 +1,4 @@
-package combatientes;
-
-import combatientes.Guerrero;
+package combatientes.guerrero;
 
 public class GuerreroHack extends Guerrero {
 

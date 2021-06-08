@@ -1,10 +1,7 @@
-package combatientes;
+package combatientes.guerrero;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import combatientes.Guerrero;
-import combatientes.Wrives;
 
 public class WrivesTest {
 

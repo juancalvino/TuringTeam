@@ -1,6 +1,5 @@
-package combatientes;
+package combatientes.guerrero;
 
-import java.util.List;
 
 public class Nortaichian extends Guerrero {
 

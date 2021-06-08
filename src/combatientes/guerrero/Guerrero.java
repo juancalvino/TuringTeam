@@ -1,6 +1,8 @@
-package combatientes;
+package combatientes.guerrero;
 
 import java.util.ArrayList;
+
+import combatientes.Combatiente;
 
 public abstract class Guerrero implements Combatiente, Comparable<Guerrero>{
 
