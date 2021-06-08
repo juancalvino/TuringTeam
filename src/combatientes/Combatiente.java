@@ -6,7 +6,7 @@ public interface Combatiente {
 
 	public int atacar();
 
-	public void recibirAtaque(int ataque);
+	public void recibirAtaque(int ataque) throws NegativeNumberException;
 	
 	public void descansar();
 

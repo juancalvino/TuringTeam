@@ -6,19 +6,48 @@ import org.junit.Test;
 
 public class EjercitoTest {
 
+	
 	@Test
-	public void crearEjercitoConWrives() {
-		Ejercito ejercitoDeWrives = new Ejercito(new Wrives(), 100) ;
+	public void iniciarEjercitoPropioConWrives() throws CreateInstanceEjercitoPropioException, NegativeNumberException{
 		
-		Assert.assertEquals(ejercitoDeWrives.getSalud(),108);
-		ejercitoDeWrives.recibirAtaque(100);
+		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 100);
+	
+		Assert.assertEquals(jugador.getSalud(),108);
+		jugador.recibirAtaque(100);
 
-		Assert.assertEquals(ejercitoDeWrives.devolverCantidadDeGuerreros() , 99);
+		Assert.assertEquals(jugador.cantidadDeGuerreros(), 99);
+
+		Assert.assertEquals(jugador.getSalud(),108);
+
+		jugador.recibirAtaque(100);
+		Assert.assertEquals(jugador.cantidadDeGuerreros(), 98);
+	
+	}
+	
+	@Test
+	public void agregarANuestroEjercitoAliadosDe100Reralopes() throws CreateInstanceEjercitoPropioException, NegativeNumberException{
+		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 100);
 		
-		Assert.assertEquals(ejercitoDeWrives.getSalud(),108);
+		Assert.assertEquals(jugador.getSalud(),108);
+		jugador.recibirAtaque(100);
+
+		jugador.agregarEjercito(new EjercitoAliado(new Reralopes(), 100));
+		Assert.assertEquals(jugador.cantidadDeGuerreros(), 199);
 		
-		ejercitoDeWrives.recibirAtaque(200);
-		Assert.assertEquals(ejercitoDeWrives.devolverCantidadDeGuerreros() , 98);
+		Assert.assertEquals(jugador.atacar(), 27);
+		
+		for(int i =0; i<99; i++) {
+			jugador.recibirAtaque(57);
+		}
+		
+		Assert.assertEquals(jugador.cantidadDeGuerreros(),100 );
+		
+		jugador.recibirAtaque(57);
+	
+		Assert.assertEquals(jugador.cantidadDeGuerreros(),99 );
+
+		Assert.assertEquals(jugador.getSalud(), 108 );
+
 		
 	}
 	

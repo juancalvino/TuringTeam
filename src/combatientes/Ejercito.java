@@ -4,17 +4,14 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 
-public class Ejercito implements Combatiente {
+public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 
-	protected TipoEjercito tipo;
-	Queue<Combatiente> cola = new PriorityQueue<Combatiente>();
+	protected Queue<Combatiente> cola = new PriorityQueue<Combatiente>();
 
-	public Ejercito(TipoEjercito tipo) {
-		this.tipo = tipo;
-	}
-
-	public Ejercito(Guerrero tipo, int cantidad) {
-		cola.addAll(tipo.crearLista(cantidad));
+	public Ejercito() {}
+	
+	public Ejercito(Guerrero tipo, int cantidad) throws NegativeNumberException {
+		cola.addAll(tipo.crearLista(Verificador.dePositividad(cantidad)));
 	}
 
 	public int getSaludTotalDelEjercito() {
@@ -37,12 +34,11 @@ public class Ejercito implements Combatiente {
 	}
 
 	@Override
-	public void recibirAtaque(int ataque) {
-		Combatiente combatiente = cola.peek();
-		combatiente.recibirAtaque(ataque);
-		
-		if(combatiente.getSalud() <= 0) {
-			cola.poll();
+	public void recibirAtaque(int ataque) throws NegativeNumberException {
+		cola.peek().recibirAtaque(Verificador.dePositividad(ataque));
+
+		if(cola.peek().getSalud() <= 0) {
+			cola.remove();
 		}
 	}
 
@@ -53,7 +49,18 @@ public class Ejercito implements Combatiente {
 		}
 	}
 	
-	public int devolverCantidadDeGuerreros(){
-		return cola.size();
+
+	@Override
+	public int compareTo(Ejercito other) {
+		
+		if(this.getClass() == other.getClass()) {
+			return 0;
+		}
+		if(other instanceof EjercitoAliado) {
+			return 1; 
+		}
+		
+		return -1;
+		
 	}
 }
