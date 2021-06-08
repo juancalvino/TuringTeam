@@ -5,18 +5,15 @@ public class EjercitoUnico extends Ejercito {
 
 	private static EjercitoUnico instanciaUnica;
 
-	private EjercitoUnico(Guerrero tipo, int cantidad) throws NegativeNumberException {
+	private EjercitoUnico(Guerrero tipo, int cantidad){
 		super(tipo, cantidad);
 	}
 
-	protected static void startEjercitoPropio(Guerrero tipo, int cantidad) throws NegativeNumberException {
+	protected static void startEjercitoPropio(Guerrero tipo, int cantidad){
 		instanciaUnica = new EjercitoUnico(tipo, cantidad);
 	}
 
-	protected static EjercitoUnico getEjercito() throws CreateInstanceEjercitoPropioException {
-		if (instanciaUnica == null) {
-			throw new CreateInstanceEjercitoPropioException();
-		}
+	protected static EjercitoUnico getEjercito() {
 		return instanciaUnica;
 	}
 

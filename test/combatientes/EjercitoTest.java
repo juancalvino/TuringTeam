@@ -8,7 +8,7 @@ public class EjercitoTest {
 
 	
 	@Test
-	public void iniciarEjercitoPropioCon100WrivesYDesmayarAUnGuerrero() throws CreateInstanceEjercitoPropioException, NegativeNumberException{
+	public void iniciarEjercitoPropioCon100WrivesYDesmayarAUnGuerrero(){
 		
 		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 100);
 	
@@ -21,7 +21,7 @@ public class EjercitoTest {
 	}
 	
 	@Test
-	public void agregarANuestroEjercitoAliadosDe100Reralopes() throws CreateInstanceEjercitoPropioException, NegativeNumberException{
+	public void agregarANuestroEjercitoAliadosDe100Reralopes() {
 		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 100);
 
 		jugador.agregarEjercito(new EjercitoAliado(new Reralopes(), 100));
@@ -30,7 +30,7 @@ public class EjercitoTest {
 	}
 	
 	@Test
-	public void desmayar100GuerrerosReralopesAliadosDeNuestroEjercito() throws CreateInstanceEjercitoPropioException, NegativeNumberException{
+	public void desmayar100GuerrerosReralopesAliadosDeNuestroEjercito() {
 		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 100);
 
 		jugador.agregarEjercito(new EjercitoAliado(new Reralopes(), 100));

@@ -10,8 +10,14 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 
 	public Ejercito() {}
 	
-	public Ejercito(Guerrero tipo, int cantidad) throws NegativeNumberException {
-		cola.addAll(tipo.crearLista(Verificador.dePositividad(cantidad)));
+	public Ejercito(Guerrero tipo, int cantidad){
+		try {
+			cola.addAll(tipo.crearLista(Verificador.dePositividad(cantidad)));
+			}
+		catch(NegativeNumberException e){
+			System.err.println("La cantidad de guerreros no puede ser menor a 0");
+			e.printStackTrace();
+		}
 	}
 
 	public int getSaludTotalDelEjercito() {
@@ -36,12 +42,20 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 	}
 
 	@Override
-	public void recibirAtaque(int ataque) throws NegativeNumberException {
-		cola.peek().recibirAtaque(Verificador.dePositividad(ataque));
-
-		if(cola.peek().getSalud() <= 0) {
-			cola.remove();
+	public void recibirAtaque(int ataque){
+		try {
+			cola.peek().recibirAtaque(Verificador.dePositividad(ataque));
+	
+			if(cola.peek().getSalud() <= 0) {
+				cola.remove();
+			}
 		}
+		catch( NegativeNumberException e){
+			System.err.println("El ataque no puede ser menor a 0");
+			e.getStackTrace();
+		}
+		
+
 	}
 
 	@Override
