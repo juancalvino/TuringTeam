@@ -11,28 +11,15 @@ public class EjercitoJugador extends Ejercito {
 		this.cola.add(aliado);
 	}
 
+	
 	@Override
-	public void recibirAtaque(int ataque) throws NegativeNumberException {
-		
-		Ejercito ejercito = (Ejercito) cola.peek();
-		
-		this.cola.peek().recibirAtaque(ataque);
-	
-		if(ejercito.cola.isEmpty()) {
-			this.cola.remove();
-		}
-	
-	}
-
-	
-	
 	public int cantidadDeGuerreros() {
 
 		int total = 0;
 		
 		for (Combatiente combatiente : cola) {
 			Ejercito ejercito = (Ejercito) combatiente;
-			total += ejercito.cola.size();
+			total += ejercito.cantidadDeGuerreros();
 		}
 		
 		return total;

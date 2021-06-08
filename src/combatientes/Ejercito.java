@@ -25,7 +25,9 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 	
 	@Override
 	public int getSalud() {
-		return cola.peek().getSalud();
+		if(!cola.isEmpty())
+			return cola.peek().getSalud();
+		return -1;
 	}
 	
 	@Override
@@ -49,6 +51,10 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 		}
 	}
 	
+
+	public int cantidadDeGuerreros() {
+		return cola.size();
+	}
 
 	@Override
 	public int compareTo(Ejercito other) {
