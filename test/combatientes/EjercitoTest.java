@@ -13,15 +13,12 @@ public class EjercitoTest {
 		Assert.assertEquals(ejercitoDeWrives.getSalud(),108);
 		ejercitoDeWrives.recibirAtaque(100);
 
-		Assert.assertEquals(ejercitoDeWrives.getSalud(),-92);
-
-		ejercitoDeWrives.devolverCola().poll();	
-		Assert.assertEquals(ejercitoDeWrives.devolverCola().size() , 99);
+		Assert.assertEquals(ejercitoDeWrives.devolverCantidadDeGuerreros() , 99);
 		
 		Assert.assertEquals(ejercitoDeWrives.getSalud(),108);
 		
-		ejercitoDeWrives.devolverCola().poll();	
-		Assert.assertEquals(ejercitoDeWrives.devolverCola().size() , 98);
+		ejercitoDeWrives.recibirAtaque(200);
+		Assert.assertEquals(ejercitoDeWrives.devolverCantidadDeGuerreros() , 98);
 		
 	}
 	

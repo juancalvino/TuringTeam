@@ -17,7 +17,7 @@ public class Ejercito implements Combatiente {
 		cola.addAll(tipo.crearLista(cantidad));
 	}
 
-	public int getSaludTotal() {
+	public int getSaludTotalDelEjercito() {
 		int saludTotal = 0;
 
 		for (Combatiente combatiente : cola) {
@@ -38,7 +38,12 @@ public class Ejercito implements Combatiente {
 
 	@Override
 	public void recibirAtaque(int ataque) {
-		cola.peek().recibirAtaque(ataque);
+		Combatiente combatiente = cola.peek();
+		combatiente.recibirAtaque(ataque);
+		
+		if(combatiente.getSalud() <= 0) {
+			cola.poll();
+		}
 	}
 
 	@Override
@@ -48,7 +53,7 @@ public class Ejercito implements Combatiente {
 		}
 	}
 	
-	public Queue<Combatiente> devolverCola(){
-		return cola;
+	public int devolverCantidadDeGuerreros(){
+		return cola.size();
 	}
 }
