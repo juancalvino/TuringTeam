@@ -3,8 +3,8 @@ package combatientes;
 public class EjercitoJugador extends Ejercito {
 	
 	public EjercitoJugador(Guerrero tipo, int cantidad) throws CreateInstanceEjercitoPropioException, NegativeNumberException {
-		jugador.startEjercitoPropio(tipo, cantidad);
-		this.cola.add(jugador.getEjercito());
+		EjercitoUnico.startEjercitoPropio(tipo, cantidad);
+		this.cola.add(EjercitoUnico.getEjercito());
 	}
 	
 	public void  agregarEjercito(EjercitoAliado aliado) {
