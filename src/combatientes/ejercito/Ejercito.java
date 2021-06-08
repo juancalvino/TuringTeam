@@ -13,7 +13,7 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 
 	protected Queue<Combatiente> cola = new PriorityQueue<Combatiente>();
 
-	public Ejercito() {}
+	protected Ejercito() {}
 	
 	public Ejercito(Guerrero tipo, int cantidad){
 		try {
@@ -23,15 +23,6 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 			System.err.println("La cantidad de guerreros" + e.getMessage() );
 			e.printStackTrace();
 		}
-	}
-
-	public int getSaludTotalDelEjercito() {
-		int saludTotal = 0;
-
-		for (Combatiente combatiente : cola) {
-			saludTotal += combatiente.getSalud();
-		}
-		return saludTotal;
 	}
 	
 	@Override
@@ -79,7 +70,9 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 	
 	@Override
 	public void guerreroCombatio() {
-		cola.peek().guerreroCombatio();
+		if(!cola.isEmpty()) {
+			cola.peek().guerreroCombatio();
+		}
 	}
 
 	@Override
@@ -88,10 +81,10 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 		if(this.getClass() == other.getClass()) {
 			return 0;
 		}
-		if(other instanceof EjercitoAliado) {
-			return 1; 
+		if(other instanceof EjercitoUnico) {
+			return -1; 
 		}
 		
-		return -1;
+		return 1;
 	}
 }
