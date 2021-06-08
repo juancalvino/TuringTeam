@@ -76,6 +76,11 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 	public int cantidadDeGuerreros() {
 		return cola.size();
 	}
+	
+	@Override
+	public void guerreroCombatio() {
+		cola.peek().guerreroCombatio();
+	}
 
 	@Override
 	public int compareTo(Ejercito other) {
@@ -88,6 +93,5 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 		}
 		
 		return -1;
-		
 	}
 }

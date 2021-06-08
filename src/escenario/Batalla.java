@@ -1,12 +1,11 @@
 package escenario;
 import combatientes.Combatiente;
-import combatientes.ejercito.Ejercito;
 import combatientes.ejercito.EjercitoEnemigo;
 import combatientes.ejercito.EjercitoJugador;
 
 public class Batalla {
 	
-    public Ejercito obtenerSobreviviente(EjercitoJugador ejercitoJugador, EjercitoEnemigo ejercitoEnemigo) {
+    public Combatiente obtenerSobreviviente(EjercitoJugador ejercitoJugador, EjercitoEnemigo ejercitoEnemigo) {
 
     	boolean seguirBatallando = true;
     	Combatiente atacante = ejercitoJugador;
@@ -22,7 +21,10 @@ public class Batalla {
             receptor = aux;
     	}
     	
-        return ejercitoJugador.getSalud()>= 0? ejercitoJugador : ejercitoEnemigo ;
+    	Combatiente ejercitoGanador = ejercitoJugador.getSalud()>= 0? ejercitoJugador : ejercitoEnemigo;
+    	ejercitoGanador.guerreroCombatio();
+    	
+        return ejercitoGanador;
     }
 
 }

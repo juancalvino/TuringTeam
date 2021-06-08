@@ -8,10 +8,10 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero>{
 
 	protected int salud;
 	protected int danioBasico;
-	private boolean terminoUnaBatalla;
+	private boolean combatio;
 	
 	public Guerrero() {
-		this.terminoUnaBatalla = false;
+		this.combatio = false;
 	}
 	
 	public int getSalud() {
@@ -31,21 +31,22 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero>{
 	
 	@Override
 	public int compareTo(Guerrero other) {
-		if(this.terminoUnaBatalla && other.getTerminoUnaBatalla()) {
+		if(this.combatio && other.getCombatio()) {
 			return 0;
 		}
-		if(this.terminoUnaBatalla) {
+		if(this.combatio) {
 			return -1;
 		}
 		return 1;
 	}
 
-	public void terminoUnaBatalla() {
-		this.terminoUnaBatalla = true;
+	@Override
+	public void guerreroCombatio() {
+		this.combatio = true;
 	}
 	
-	public boolean getTerminoUnaBatalla() {
-		return this.terminoUnaBatalla;
+	private boolean getCombatio() {
+		return this.combatio;
 	}
 	
 	public ArrayList<Guerrero> crearLista(int cantidad){
