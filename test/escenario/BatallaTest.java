@@ -47,4 +47,27 @@ public class BatallaTest {
 
         Assert.assertEquals(ejercitoEnemigo, ejercitoVictorioso);
     }
+    
+    @Test
+    public void prueba005() {
+        ejercitoJugador = new EjercitoJugador(new Wrives(), 5);
+        ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 5);
+
+        ejercitoVictorioso = batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
+
+        Assert.assertEquals(ejercitoJugador, ejercitoVictorioso);
+        Assert.assertEquals(1, ejercitoVictorioso.cantidadDeGuerreros());
+    }
+
+    @Test
+    public void prueba006() {
+        ejercitoJugador = new EjercitoJugador(new Wrives(), 300);
+        ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 301);
+
+        ejercitoVictorioso = batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
+        int cantidadDeGuerrerosVictoriososRestantes = ejercitoVictorioso.cantidadDeGuerreros();
+
+        Assert.assertEquals(ejercitoEnemigo, ejercitoVictorioso);
+        Assert.assertEquals(1, cantidadDeGuerrerosVictoriososRestantes);
+    }
 }
