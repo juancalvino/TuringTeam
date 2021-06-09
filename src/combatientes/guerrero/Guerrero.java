@@ -26,6 +26,10 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero> {
 	}
 
 	public void recibirAtaque(int ataqueEnemigo) {
+		if(ataqueEnemigo < 0) {
+			throw new IllegalArgumentException("El ataque no puede ser menor a 0");
+		}
+		
 		salud -= ataqueEnemigo;
 	}
 

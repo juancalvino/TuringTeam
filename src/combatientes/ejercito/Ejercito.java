@@ -4,8 +4,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 import combatientes.Combatiente;
-import combatientes.NegativeNumberException;
-import combatientes.Verificador;
 import combatientes.guerrero.Guerrero;
 
 
@@ -16,13 +14,10 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 	protected Ejercito() {}
 	
 	public Ejercito(Guerrero tipo, int cantidad){
-		try {
-			cola.addAll(tipo.crearLista(Verificador.dePositividad(cantidad)));
-			}
-		catch(NegativeNumberException e){
-			System.err.println("La cantidad de guerreros" + e.getMessage() );
-			e.printStackTrace();
+		if(cantidad < 0) {
+			throw new IllegalArgumentException("La cantidad ingresada debe ser mayor a 0");
 		}
+		cola.addAll(tipo.crearLista(cantidad));
 	}
 	
 	@Override
@@ -39,21 +34,17 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 
 	@Override
 	public void recibirAtaque(int ataque){
-		try {
-			if(!cola.isEmpty()) {
-			cola.peek().recibirAtaque(Verificador.dePositividad(ataque));
-			}
-			
-			if(cola.peek().getSalud() <= 0) {
-				cola.remove();
-			}
-		}
-		catch( NegativeNumberException e){
-			System.err.println("ataque" + e.getMessage());
-			e.getStackTrace();
+		if(ataque < 0) {
+			throw new IllegalArgumentException("La cantidad ingresada debe ser mayor a 0");
 		}
 		
-
+		if(!cola.isEmpty()) {
+		cola.peek().recibirAtaque(ataque);
+		}
+		
+		if(cola.peek().getSalud() <= 0) {
+			cola.remove();
+		}
 	}
 
 	@Override
