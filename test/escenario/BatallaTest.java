@@ -45,6 +45,6 @@ public class BatallaTest {
 
         ejercitoVictorioso = batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo);
 
-        Assert.assertEquals(nuestroEjercito, ejercitoVictorioso);
+        Assert.assertEquals(ejercitoEnemigo, ejercitoVictorioso);
     }
 }
