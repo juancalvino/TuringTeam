@@ -59,7 +59,14 @@ public class RadaiteranTest {
 
 		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(-56, enemigo.getSalud());
-		//prueba
-
+	}
+	
+	/*
+	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
+	 */
+	@Test(expected = Exception.class)
+	public void prueba006() {
+		radaiteran.recibirAtaque(-50);
+		Assert.assertEquals(66, radaiteran.getSalud());
 	}
 }

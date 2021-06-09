@@ -98,5 +98,13 @@ public class NortaichianTest {
 		nortaichian.recibirAtaque(enemigo.atacar());
 		Assert.assertEquals(17, nortaichian.getSalud());
 	}
-
+	
+	/*
+	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
+	 */
+	@Test(expected = Exception.class)
+	public void prueba008() {
+		nortaichian.recibirAtaque(-50);
+		Assert.assertEquals(66, nortaichian.getSalud());
+	}
 }

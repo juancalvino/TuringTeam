@@ -82,4 +82,13 @@ public class WrivesTest {
 		enemigo.recibirAtaque(wrives.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 	}
+	
+	/*
+	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
+	 */
+	@Test(expected = Exception.class)
+	public void prueba006() {
+		wrives.recibirAtaque(-50);
+		Assert.assertEquals(108, wrives.getSalud());
+	}
 }

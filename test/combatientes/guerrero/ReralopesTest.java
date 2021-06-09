@@ -93,4 +93,13 @@ public class ReralopesTest {
 		enemigo.recibirAtaque(reralopes.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());
 	}
+	
+	/*
+	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
+	 */
+	@Test(expected = Exception.class)
+	public void prueba007() {
+		reralopes.recibirAtaque(-50);
+		Assert.assertEquals(53, reralopes.getSalud());
+	}
 }
