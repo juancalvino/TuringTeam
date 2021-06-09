@@ -22,13 +22,29 @@ public class BatallaTest {
     public void prueba002() {
         nuestroEjercito = new EjercitoJugador(new Nortaichian(), 2);
         ejercitoEnemigo = new EjercitoEnemigo(new Reralopes(), 3);
-        Assert.assertEquals(nuestroEjercito, batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo));
+
+        ejercitoVictorioso = batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo);
+
+        Assert.assertEquals(nuestroEjercito, ejercitoVictorioso);
     }
-    
+
+    @Test
+    public void prueba003() {
+        nuestroEjercito = new EjercitoJugador(new Wrives(), 10);
+        ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 10);
+
+        ejercitoVictorioso = batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo);
+
+        Assert.assertEquals(nuestroEjercito, ejercitoVictorioso);
+    }
+
     @Test
     public void prueba004() {
-        nuestroEjercito = new EjercitoJugador(new Reralopes(), 200);
-        ejercitoEnemigo = new EjercitoEnemigo(new Nortaichian(), 3);
-        Assert.assertEquals(nuestroEjercito, batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo));
+        nuestroEjercito = new EjercitoJugador(new Reralopes(), 20);
+        ejercitoEnemigo = new EjercitoEnemigo(new Wrives(), 20);
+
+        ejercitoVictorioso = batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo);
+
+        Assert.assertEquals(nuestroEjercito, ejercitoVictorioso);
     }
 }
