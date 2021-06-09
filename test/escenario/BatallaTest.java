@@ -1,16 +1,13 @@
 package escenario;
 
-import combatientes.ejercito.EjercitoEnemigo;
-import combatientes.ejercito.EjercitoJugador;
-import combatientes.guerrero.Nortaichian;
-import combatientes.guerrero.Reralopes;
-
+import combatientes.ejercito.*;
+import combatientes.guerrero.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BatallaTest {
     Batalla batalla = new Batalla();
-    EjercitoJugador nuestroEjercito;
+    EjercitoJugador ejercitoJugador;
     EjercitoEnemigo ejercitoEnemigo;
     Ejercito ejercitoVictorioso;
 
@@ -21,30 +18,30 @@ public class BatallaTest {
 
     @Test
     public void prueba002() {
-        nuestroEjercito = new EjercitoJugador(new Nortaichian(), 2);
+        ejercitoJugador = new EjercitoJugador(new Nortaichian(), 2);
         ejercitoEnemigo = new EjercitoEnemigo(new Reralopes(), 3);
 
-        ejercitoVictorioso = batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo);
+        ejercitoVictorioso = (Ejercito) batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
 
-        Assert.assertEquals(nuestroEjercito, ejercitoVictorioso);
+        Assert.assertEquals(ejercitoJugador, ejercitoVictorioso);
     }
 
     @Test
     public void prueba003() {
-        nuestroEjercito = new EjercitoJugador(new Wrives(), 10);
+        ejercitoJugador = new EjercitoJugador(new Wrives(), 10);
         ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 10);
 
-        ejercitoVictorioso = batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo);
+        ejercitoVictorioso = (Ejercito) batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
 
-        Assert.assertEquals(nuestroEjercito, ejercitoVictorioso);
+        Assert.assertEquals(ejercitoJugador, ejercitoVictorioso);
     }
 
     @Test
     public void prueba004() {
-        nuestroEjercito = new EjercitoJugador(new Reralopes(), 20);
+        ejercitoJugador = new EjercitoJugador(new Reralopes(), 20);
         ejercitoEnemigo = new EjercitoEnemigo(new Wrives(), 20);
 
-        ejercitoVictorioso = batalla.obtenerSobreviviente(nuestroEjercito, ejercitoEnemigo);
+        ejercitoVictorioso = (Ejercito) batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
 
         Assert.assertEquals(ejercitoEnemigo, ejercitoVictorioso);
     }
@@ -54,10 +51,11 @@ public class BatallaTest {
         ejercitoJugador = new EjercitoJugador(new Wrives(), 5);
         ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 5);
 
-        ejercitoVictorioso = batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
+        ejercitoVictorioso = (Ejercito) batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
+        int cantidadDeGuerrerosVictoriososRestantes = ejercitoVictorioso.cantidadDeGuerreros();
 
         Assert.assertEquals(ejercitoJugador, ejercitoVictorioso);
-        Assert.assertEquals(1, ejercitoVictorioso.cantidadDeGuerreros());
+        Assert.assertEquals(1, cantidadDeGuerrerosVictoriososRestantes);
     }
 
     @Test
@@ -65,7 +63,7 @@ public class BatallaTest {
         ejercitoJugador = new EjercitoJugador(new Wrives(), 300);
         ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 301);
 
-        ejercitoVictorioso = batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
+        ejercitoVictorioso = (Ejercito) batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo);
         int cantidadDeGuerrerosVictoriososRestantes = ejercitoVictorioso.cantidadDeGuerreros();
 
         Assert.assertEquals(ejercitoEnemigo, ejercitoVictorioso);
