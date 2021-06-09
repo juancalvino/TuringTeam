@@ -12,6 +12,7 @@ public class BatallaTest {
     Batalla batalla = new Batalla();
     EjercitoJugador nuestroEjercito;
     EjercitoEnemigo ejercitoEnemigo;
+    Ejercito ejercitoVictorioso;
 
     @Test
     public void prueba001() {
