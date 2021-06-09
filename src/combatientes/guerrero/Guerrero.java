@@ -35,10 +35,10 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero> {
 
 	@Override
 	public int compareTo(Guerrero other) {
-		if (this.combatio && other.getCombatio()) {
+		if (this.getCombatio() && other.getCombatio()) {
 			return 0;
 		}
-		if (this.combatio) {
+		if (this.getCombatio()) {
 			return -1;
 		}
 		return 1;
