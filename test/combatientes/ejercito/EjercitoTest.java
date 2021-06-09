@@ -56,7 +56,24 @@ public class EjercitoTest {
 
 		Assert.assertEquals(jugador.getSalud(), 108 );
 
-	}	
+	}
+	
+	@Test(expected = Exception.class)
+	public void crearEjercitoConCantidadNegativaLanzaExcepcion() {
+		@SuppressWarnings("unused")
+		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), -10);
+	}
+	
+	@Test(expected = Exception.class)
+	public void recibirAtaqueNegativoLanzaExcepcion() {
+		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 10);
+
+		jugador.recibirAtaque(-50);
+
+    	Assert.assertEquals(jugador.getSalud(),108);
+	}
+	
+	
 	@Test
 	public void descansarEjercitoDeNortaichian() {
 		// Cuando descansa, recupera toda su salud
@@ -116,4 +133,5 @@ public class EjercitoTest {
 		enemigo.recibirAtaque(jugador.atacar());
 		Assert.assertEquals(enemigo.getSalud(), 38);	
 	}
+	
 }
