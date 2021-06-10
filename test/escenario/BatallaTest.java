@@ -89,7 +89,6 @@ public class BatallaTest {
     }
     
     @Test
-    // TODO TerminarPrueba
     public void prueba008() {
         ejercitoJugador = new EjercitoJugador(new GuerreroHack(100,50), 4);
         ejercitoEnemigo = new EjercitoEnemigo(new GuerreroHack(100,50), 2);
@@ -100,7 +99,13 @@ public class BatallaTest {
         
         ejercitoEnemigo = new EjercitoEnemigo(new GuerreroHack(100,50), 2);
         Assert.assertEquals(ejercitoJugador, batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo));
+        Assert.assertEquals(2, ejercitoJugador.cantidadDeGuerreros());
+        Assert.assertEquals(50, ejercitoJugador.getSalud());
 
-    
+        ejercitoEnemigo = new EjercitoEnemigo(new GuerreroHack(100,50), 1);
+        Assert.assertEquals(ejercitoJugador, batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo));        
+        Assert.assertEquals(1, ejercitoJugador.cantidadDeGuerreros());
+        Assert.assertEquals(50, ejercitoJugador.getSalud());
+
     }
 }
