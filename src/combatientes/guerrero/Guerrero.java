@@ -67,26 +67,4 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero> {
 
 	protected abstract Guerrero crearUnidad();
 
-	
-	public static void main(String[] args) {
-		Combatiente guerrero1 = new GuerreroHack(10, 10);
-		Combatiente guerrero2 = new GuerreroHack(20, 20);
-		
-		Queue<Combatiente> cola = new PriorityQueue<Combatiente>();
-		cola.add(guerrero1);
-		cola.add(guerrero2);
-		
-		System.out.println(cola.peek().getSalud());
-
-		Combatiente guerrero3 = new GuerreroHack(30, 30);
-		cola.add(guerrero3);
-
-
-		System.out.println(cola.peek().getSalud());
-		
-		cola.peek().guerreroCombatio();
-
-		System.out.println(cola.peek().getSalud());
-
-	}
 }
