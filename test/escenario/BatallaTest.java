@@ -108,4 +108,20 @@ public class BatallaTest {
         Assert.assertEquals(50, ejercitoJugador.getSalud());
 
     }
-}
+    
+    @Test
+    public void prueba009() {
+      ejercitoJugador = new EjercitoJugador(new GuerreroHack(100,100), 4);
+      
+      EjercitoAliado  ejercitoAliadoUno= new EjercitoAliado(new GuerreroHack(200,200), 4);
+      ejercitoJugador.agregarEjercito(ejercitoAliadoUno);
+      Assert.assertEquals(200, ejercitoJugador.getSalud());
+
+     
+      EjercitoAliado  ejercitoAliadoDos= new EjercitoAliado(new GuerreroHack(300,300), 4);
+      ejercitoJugador.agregarEjercito(ejercitoAliadoDos);
+      Assert.assertEquals(200, ejercitoJugador.getSalud());
+     
+    }
+    
+   }
