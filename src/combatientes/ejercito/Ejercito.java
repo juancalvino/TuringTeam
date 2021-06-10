@@ -62,7 +62,9 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 	@Override
 	public void guerreroCombatio() {
 		if(!cola.isEmpty()) {
-			cola.peek().guerreroCombatio();
+			Combatiente guerrero = cola.poll();
+			guerrero.guerreroCombatio();
+			cola.add(guerrero);
 		}
 	}
 

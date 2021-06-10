@@ -58,19 +58,14 @@ public class EjercitoTest {
 
 	}
 	
-	@Test(expected = Exception.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void crearEjercitoConCantidadNegativaLanzaExcepcion() {
-		@SuppressWarnings("unused")
-		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), -10);
+		new EjercitoJugador(new Wrives(), -10);
 	}
 	
-	@Test(expected = Exception.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void recibirAtaqueNegativoLanzaExcepcion() {
-		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 10);
-
-		jugador.recibirAtaque(-50);
-
-    	Assert.assertEquals(jugador.getSalud(),108);
+		new EjercitoJugador(new Wrives(), 10).recibirAtaque(-50);
 	}
 	
 	
@@ -84,13 +79,13 @@ public class EjercitoTest {
 		Batalla batallar = new Batalla();
 		Assert.assertEquals(batallar.obtenerSobreviviente(jugador, enemigo), jugador);
 		
-		Assert.assertEquals(jugador.getSalud(), 49);
+		Assert.assertEquals(jugador.getSalud(), 66);
 		
 		EjercitoEnemigo otroEnemigo = new EjercitoEnemigo(new GuerreroHack(40, 67), 1);
 		Assert.assertEquals(batallar.obtenerSobreviviente(jugador, otroEnemigo), jugador);
 		
-		Assert.assertEquals(jugador.cantidadDeGuerreros(), 1);
-		Assert.assertEquals(jugador.getSalud(), 1);
+		Assert.assertEquals(jugador.cantidadDeGuerreros(), 2);
+		Assert.assertEquals(jugador.getSalud(), 49);
 		
 		jugador.descansar();
 		Assert.assertEquals(jugador.getSalud(), 66);
@@ -98,7 +93,7 @@ public class EjercitoTest {
 
 	@Test
 	public void descansarEjercitoWrives() {
-		// Cuando descansa aumenta su salud y su salud máxima en 50.
+		// Cuando descansa aumenta su salud y su salud mï¿½xima en 50.
 
 		EjercitoJugador jugador = new EjercitoJugador(new Wrives(), 2);
 		EjercitoEnemigo enemigo = new EjercitoEnemigo(new GuerreroHack(300, 50), 1);
@@ -106,15 +101,15 @@ public class EjercitoTest {
 		Batalla batallar = new Batalla();
 		Assert.assertEquals(batallar.obtenerSobreviviente(jugador, enemigo), jugador);
 		
-		Assert.assertEquals(jugador.getSalud(), 8);
+		Assert.assertEquals(jugador.getSalud(), 108);
 		
 		jugador.descansar();
-		Assert.assertEquals(jugador.getSalud(), 58);
+		Assert.assertEquals(jugador.getSalud(), 158);
 	}
 	
 	@Test
 	public void descansarEjercitoReralopes() {
-		//Cuando descansa, se concentra y sus próximos 3 ataques (de esa unidad) dañan el doble del valor correspondiente
+		//Cuando descansa, se concentra y sus prï¿½ximos 3 ataques (de esa unidad) daï¿½an el doble del valor correspondiente
 		
 		EjercitoJugador jugador = new EjercitoJugador(new Reralopes(), 2);
 		EjercitoEnemigo enemigo = new EjercitoEnemigo(new GuerreroHack(200, 30), 1);

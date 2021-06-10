@@ -97,9 +97,8 @@ public class ReralopesTest {
 	/*
 	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
 	 */
-	@Test(expected = Exception.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void prueba007() {
 		reralopes.recibirAtaque(-50);
-		Assert.assertEquals(53, reralopes.getSalud());
 	}
 }

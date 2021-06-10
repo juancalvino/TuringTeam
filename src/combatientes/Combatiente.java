@@ -1,6 +1,6 @@
 package combatientes;
 
-public interface Combatiente {
+public interface Combatiente{
 
 	public int getSalud();
 
@@ -11,5 +11,5 @@ public interface Combatiente {
 	public void descansar();
 	
 	public void guerreroCombatio();
-	
+		
 }

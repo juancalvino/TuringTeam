@@ -86,9 +86,8 @@ public class WrivesTest {
 	/*
 	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
 	 */
-	@Test(expected = Exception.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void prueba006() {
 		wrives.recibirAtaque(-50);
-		Assert.assertEquals(108, wrives.getSalud());
 	}
 }

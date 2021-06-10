@@ -1,5 +1,6 @@
 package escenario;
 
+import combatientes.Combatiente;
 import combatientes.ejercito.*;
 import combatientes.guerrero.*;
 import org.junit.Assert;
@@ -68,5 +69,38 @@ public class BatallaTest {
 
         Assert.assertEquals(ejercitoEnemigo, ejercitoVictorioso);
         Assert.assertEquals(1, cantidadDeGuerrerosVictoriososRestantes);
+    }
+    
+    @Test
+    public void prueba007() {
+        ejercitoJugador = new EjercitoJugador(new Nortaichian(), 2);
+        ejercitoEnemigo = new EjercitoEnemigo(new Reralopes(), 3);
+
+        Assert.assertEquals(ejercitoJugador, batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo));
+        
+        ejercitoJugador.agregarEjercito(new EjercitoAliado(new Wrives(), 5));
+        ejercitoEnemigo = new EjercitoEnemigo(new Reralopes(), 3);
+        Assert.assertEquals(ejercitoJugador, batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo));
+
+        ejercitoEnemigo = new EjercitoEnemigo(new Wrives(), 4);
+        Assert.assertEquals(ejercitoJugador, batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo));
+
+        Assert.assertEquals(2, ejercitoJugador.cantidadDeGuerreros());
+    }
+    
+    @Test
+    // TODO TerminarPrueba
+    public void prueba008() {
+        ejercitoJugador = new EjercitoJugador(new GuerreroHack(100,50), 4);
+        ejercitoEnemigo = new EjercitoEnemigo(new GuerreroHack(100,50), 2);
+
+        Assert.assertEquals(ejercitoJugador, batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo));
+        Assert.assertEquals(3, ejercitoJugador.cantidadDeGuerreros());
+        Assert.assertEquals(100, ejercitoJugador.getSalud());
+        
+        ejercitoEnemigo = new EjercitoEnemigo(new GuerreroHack(100,50), 2);
+        Assert.assertEquals(ejercitoJugador, batalla.obtenerSobreviviente(ejercitoJugador, ejercitoEnemigo));
+
+    
     }
 }
