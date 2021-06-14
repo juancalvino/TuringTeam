@@ -1,39 +1,32 @@
 package escenario;
 
-import java.util.TreeMap;
+import combatientes.ejercito.EjercitoPropio;
 
-import combatientes.ejercito.EjercitoJugador;
+import java.util.HashMap;
 
 public class Escenario {
 
 	private int cantidadDePueblos;
-	private TreeMap<String, Pueblo> mapaDePueblos;
-
-	private EjercitoJugador jugador;
-
+	private HashMap<String, Pueblo> mapaDePueblos;
+	private EjercitoPropio jugador;
 	private String origen;
 	private String destino;
-	
-//	List<Camino> listaDeCaminos;	
-	
+
 	private static Escenario unicaInstancia;
 
 	private Escenario() {
-		
 		this.cantidadDePueblos = 0;
-		this.mapaDePueblos = new TreeMap<String, Pueblo>();;
+		this.mapaDePueblos = new HashMap<>();
 		this.origen = null;
 		this.destino = null;
-		
 	}
 
 	public static Escenario getInstance() {
-	    if (unicaInstancia == null) {
-	        unicaInstancia = new Escenario();
-	    }
-	    return unicaInstancia;
+		if (unicaInstancia == null) {
+			unicaInstancia = new Escenario();
+		}
+		return unicaInstancia;
 	}
-	
 
 	public int getCantidadDePueblos() {
 		return cantidadDePueblos;
@@ -43,16 +36,8 @@ public class Escenario {
 		this.cantidadDePueblos = cantidadDePueblos;
 	}
 
-	public void agregarPueblo(Pueblo pueblo) {
-		mapaDePueblos.put(pueblo.getNombre(), pueblo);
-	}
-
-	public void setMapaDePueblos(TreeMap<String, Pueblo> mapaDePueblos) {
+	public void setMapaDePueblos(HashMap<String, Pueblo> mapaDePueblos) {
 		this.mapaDePueblos = mapaDePueblos;
-	}
-
-	public String getOrigen() {
-		return origen;
 	}
 
 	public void cargarRuta(String origen, String destino) {
@@ -60,17 +45,20 @@ public class Escenario {
 		this.destino = destino;
 	}
 
+	public String getOrigen() {
+		return origen;
+	}
+
+
 	public String getDestino() {
 		return destino;
 	}
 
-
-	public EjercitoJugador getJugador() {
+	public EjercitoPropio getJugador() {
 		return jugador;
 	}
 
-	public void setJugador(EjercitoJugador jugador) {
+	public void setJugador(EjercitoPropio jugador) {
 		this.jugador = jugador;
 	}
-	
 }
