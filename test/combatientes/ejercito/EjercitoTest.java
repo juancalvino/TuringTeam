@@ -93,7 +93,7 @@ public class EjercitoTest {
 
 	@Test
 	public void descansarEjercitoWrives() {
-		// Cuando descansa aumenta su salud y su salud m�xima en 50.
+		// Cuando descansa aumenta su salud y su salud maxima en 50.
 
 		EjercitoPropio jugador = new EjercitoPropio(new Wrives(), 2);
 		EjercitoEnemigo enemigo = new EjercitoEnemigo(new GuerreroHack(300, 50), 1);
@@ -109,7 +109,7 @@ public class EjercitoTest {
 	
 	@Test
 	public void descansarEjercitoReralopes() {
-		//Cuando descansa, se concentra y sus pr�ximos 3 ataques (de esa unidad) da�an el doble del valor correspondiente
+		//Cuando descansa, se concentra y sus proximos 3 ataques (de esa unidad) danian el doble del valor correspondiente
 
 		EjercitoPropio jugador = new EjercitoPropio(new Reralopes(), 2);
 		EjercitoEnemigo enemigo = new EjercitoEnemigo(new GuerreroHack(200, 30), 1);

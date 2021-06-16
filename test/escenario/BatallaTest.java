@@ -12,12 +12,12 @@ public class BatallaTest {
     Ejercito ejercitoVictorioso;
 
     @Test
-    public void prueba001() {
+    public void seCreaUnaInstanciaDeLaBatalla() {
         new Batalla();
     }
 
     @Test
-    public void prueba002() {
+    public void batallan2NortaichianVs3ReralopesYgananLosNortaichian() {
         ejercitoPropio = new EjercitoPropio(new Nortaichian(), 2);
         ejercitoEnemigo = new EjercitoEnemigo(new Reralopes(), 3);
 
@@ -27,7 +27,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void prueba003() {
+    public void batallan10WrivesVs10RadaiteranYgananLosWrives() {
         ejercitoPropio = new EjercitoPropio(new Wrives(), 10);
         ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 10);
 
@@ -37,7 +37,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void prueba004() {
+    public void batallan20ReralopesVs20WrivesYgananLosReralopes() {
         ejercitoPropio = new EjercitoPropio(new Reralopes(), 20);
         ejercitoEnemigo = new EjercitoEnemigo(new Wrives(), 20);
 
@@ -47,7 +47,7 @@ public class BatallaTest {
     }
     
     @Test
-    public void prueba005() {
+    public void batallan5WrivesVs5RadaiteranGananLosWrivesYsobrevive1Wriwe() {
         ejercitoPropio = new EjercitoPropio(new Wrives(), 5);
         ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 5);
 
@@ -59,7 +59,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void prueba006() {
+    public void batallan300WrivesVs301RadaiteranGananLosRadaiteranYsobrevive1Radaiteran() {
         ejercitoPropio = new EjercitoPropio(new Wrives(), 300);
         ejercitoEnemigo = new EjercitoEnemigo(new Radaiteran(), 301);
 

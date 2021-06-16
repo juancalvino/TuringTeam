@@ -8,30 +8,25 @@ public class RadaiteranTest {
 	Guerrero radaiteran = new Radaiteran();
 	Guerrero enemigo = new GuerreroHack(0, 0);
 
-	// Prueba crear guerrero Radaiteran
 	@Test
-	public void prueba001() {
+	public void seCreaUnaInstanciaDeRadaiteran() {
 		new Radaiteran();
 	}
 
-	// Prueba corroborar valores predeterminados del guerrero
-	// Salud: 36
 	@Test
-	public void prueba002() {
+	public void seVerificaLaSaludInicialDelRadaiteran() {
 		Assert.assertEquals(36, radaiteran.getSalud());
 	}
 
-	// Prueba ataque Radaiteran
-	// Danio basico: 56
 	@Test
-	public void prueba003() {
+	public void seVerificaElDanioBasicoDelRadaiteran() {
+		enemigo = new GuerreroHack(58, 100);
 		enemigo.recibirAtaque(radaiteran.atacar());
-		Assert.assertEquals(-56, enemigo.getSalud());
+		Assert.assertEquals(2, enemigo.getSalud());
 	}
 
-	// Prueba de ataques, danio aumenta 3 por cada golpe dado anteriormente
 	@Test
-	public void prueba004() {
+	public void aumenta3deDanioPorCadaAtaqueRealizado() {
 		enemigo = new GuerreroHack(310, 100);
 
 		enemigo.recibirAtaque(radaiteran.atacar());
@@ -48,24 +43,34 @@ public class RadaiteranTest {
 
 		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
-
-	}
-
-	// Descansar no modifica ningun valor
-	@Test
-	public void prueba005() {
-		radaiteran.descansar();
-		Assert.assertEquals(36, radaiteran.getSalud());
-
-		enemigo.recibirAtaque(radaiteran.atacar());
-		Assert.assertEquals(-56, enemigo.getSalud());
 	}
 	
-	/*
-	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
-	 */
+	@Test
+	public void alRecibirAtaquesLoHaceNormalmente() {
+		enemigo = new GuerreroHack(200, 5);
+		
+		radaiteran.recibirAtaque(enemigo.atacar());
+		radaiteran.recibirAtaque(enemigo.atacar());
+		radaiteran.recibirAtaque(enemigo.atacar());
+		radaiteran.recibirAtaque(enemigo.atacar());
+		
+		Assert.assertEquals(16, radaiteran.getSalud());
+	}
+
+	@Test
+	public void descansarNoAfectaAlGuerrero() {
+		enemigo = new GuerreroHack(58, 10);
+		radaiteran.recibirAtaque(enemigo.atacar());
+		
+		radaiteran.descansar();
+		Assert.assertEquals(26, radaiteran.getSalud());
+
+		enemigo.recibirAtaque(radaiteran.atacar());
+		Assert.assertEquals(2, enemigo.getSalud());
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
-	public void prueba006() {
+	public void alRecibirUnAtaqueNegativoLanzaExcepcion() {
 		radaiteran.recibirAtaque(-50);
 	}
 }

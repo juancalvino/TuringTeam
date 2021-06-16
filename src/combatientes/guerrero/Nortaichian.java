@@ -24,7 +24,7 @@ public class Nortaichian extends Guerrero {
 		--turnosEnfurecido;
 		this.salud += salud * 0.04;
 		
-		return (turnosEnfurecido > 0) ? super.atacar() * 2 : super.atacar();
+		return (turnosEnfurecido >= 0) ? super.atacar() * 2 : super.atacar();
 	}
 
 	
@@ -39,6 +39,7 @@ public class Nortaichian extends Guerrero {
 		}
 
 		super.recibirAtaque(ataqueRecibido);
+		turnosPiedra--; 
 	}
 
 	@Override

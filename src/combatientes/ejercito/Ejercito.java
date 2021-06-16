@@ -12,7 +12,7 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 
 	protected Ejercito() {
 	}
-
+	
 	public Ejercito(Guerrero tipo, int cantidad) {
 		if (cantidad < 0) {
 			throw new IllegalArgumentException("La cantidad ingresada debe ser mayor a 0");

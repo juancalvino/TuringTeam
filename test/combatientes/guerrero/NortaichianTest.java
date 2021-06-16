@@ -7,60 +7,55 @@ public class NortaichianTest {
 	Guerrero nortaichian = new Nortaichian();
 	Guerrero enemigo = new GuerreroHack(0, 0);
 
-	// Se crea una nueva instancia de Nortaichian
 	@Test
-	public void prueba001() {
+	public void seCreaUnaInstanciaDeNortaichian() {
 		new Nortaichian();
 	}
 
-	// Se verifica que los valores inicializados de la instancia coincidan con los
-	// senialados por la consigna
-	// Salud: 66
 	@Test
-	public void prueba002() {
+	public void seVerificaLaSaludInicialDelNortaichian() {
 		Assert.assertEquals(66, nortaichian.getSalud());
-		
+	}
+	
+	@Test
+	public void seVerificaElDanioBasicoDelNortaichian() {
 		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(-18, enemigo.getSalud());
 	}
-
-	// Danio Basico: 18
+	
 	@Test
-	public void prueba003() {
-		enemigo.recibirAtaque(nortaichian.atacar());
-		Assert.assertEquals(-18, enemigo.getSalud());
-	}
-
-	/*
-	 * 'unNortaichian' cada vez que ataca se cura un 4% de su salud
-	 */
-	@Test
-	public void prueba004() {
+	public void unNortaichianSeCura4porcientoPorCadaAtaque() {
 		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(68, nortaichian.getSalud());
 	}
 
-	/*
-	 * 'unNortaichian' ataca a 'otroNortaichian', 'otroNortaichian' ataca enfurecido
-	 * (x2)
-	 */
+	//Al recibir un ataque se enfurece y sus ataques multiplican por 2 su daño (dura 2 turnos propios).
 	@Test
-	public void prueba005() {
-		enemigo = new Nortaichian();
+	public void unNortaichianAlRecibirAtaqueSeEnfurece() {
+		enemigo = new GuerreroHack(208, 10);
 
 		enemigo.recibirAtaque(nortaichian.atacar());
-		Assert.assertEquals(48, enemigo.getSalud());
+		Assert.assertEquals(190, enemigo.getSalud()); //Nortaichian ataca danio basico
 
-		nortaichian.recibirAtaque(enemigo.atacar());
-		Assert.assertEquals(32, nortaichian.getSalud());
-		Assert.assertEquals(49, enemigo.getSalud());
+		nortaichian.recibirAtaque(enemigo.atacar());  //Nortaichian recibe el ataque y se enfurece
+		
+		enemigo.recibirAtaque(nortaichian.atacar());
+		Assert.assertEquals(154, enemigo.getSalud()); //Nortaichian ataca el doble de su danio basico
+		
+		enemigo.recibirAtaque(nortaichian.atacar());
+		Assert.assertEquals(118, enemigo.getSalud()); //Nortaichian ataca el doble de su danio basico
+		
+		enemigo.recibirAtaque(nortaichian.atacar());
+		Assert.assertEquals(100, enemigo.getSalud()); //Nortaichian ataca danio basico
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void alRecibirUnAtaqueNegativoLanzaExcepcion() {
+		nortaichian.recibirAtaque(-50);
 	}
 
-	/*
-	 * 'unNortaichian' recibe danio, pero luego descansa y recupera toda su salud.
-	 */
 	@Test
-	public void prueba006() {
+	public void alDescansarRecuperaTodaSuSalud() {
 		enemigo = new GuerreroHack(100, 65);
 
 		nortaichian.recibirAtaque(enemigo.atacar());
@@ -70,12 +65,8 @@ public class NortaichianTest {
 		Assert.assertEquals(66, nortaichian.getSalud());
 	}
 
-	/*
-	 * 'unNortaichian' descansa y durante 2 turnos no puede atacar (infligen 0
-	 * danio) a 'otroNortaichian', pero se reduce el danio recibido a la mitad
-	 */
 	@Test
-	public void prueba007() {
+	public void luegoDeDescansarNoPuedeAtacarPorDosTurnos() {
 		enemigo = new GuerreroHack(56, 20);
 
 		nortaichian.descansar();
@@ -83,27 +74,26 @@ public class NortaichianTest {
 		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(56, enemigo.getSalud());
 
-		nortaichian.recibirAtaque(enemigo.atacar());
-		Assert.assertEquals(56, nortaichian.getSalud());
-
 		enemigo.recibirAtaque(nortaichian.atacar());
 		Assert.assertEquals(56, enemigo.getSalud());
 
-		nortaichian.recibirAtaque(enemigo.atacar());
-		Assert.assertEquals(36, nortaichian.getSalud());
-
 		enemigo.recibirAtaque(nortaichian.atacar());
-		Assert.assertEquals(20, enemigo.getSalud());
-
-		nortaichian.recibirAtaque(enemigo.atacar());
-		Assert.assertEquals(17, nortaichian.getSalud());
+		Assert.assertEquals(38, enemigo.getSalud());
 	}
 	
-	/*
-	 * recibirAtaque lanza una excepcion si recibe un ataque negativo
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void prueba008() {
-		nortaichian.recibirAtaque(-50);
+	@Test
+	public void cuandoDescansaRecibeLaMitadDelDanioPorDosTurnos() {
+		enemigo = new GuerreroHack(56, 20);
+		
+		nortaichian.descansar();
+
+		nortaichian.recibirAtaque(enemigo.atacar());
+		Assert.assertEquals(56, nortaichian.getSalud());
+
+		nortaichian.recibirAtaque(enemigo.atacar());
+		Assert.assertEquals(46, nortaichian.getSalud());
+
+		nortaichian.recibirAtaque(enemigo.atacar());
+		Assert.assertEquals(26, nortaichian.getSalud());
 	}
 }
