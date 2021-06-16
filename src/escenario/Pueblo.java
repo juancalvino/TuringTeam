@@ -1,9 +1,11 @@
 package escenario;
 
 import combatientes.ejercito.Ejercito;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class Pueblo {
@@ -38,5 +40,13 @@ public class Pueblo {
 
     public void setEjercito(Ejercito ejercito) {
         this.ejercito = ejercito;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pueblo pueblo = (Pueblo) o;
+        return Objects.equals(caminos, pueblo.caminos) && Objects.equals(nombre, pueblo.nombre);
     }
 }

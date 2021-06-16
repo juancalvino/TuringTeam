@@ -49,7 +49,6 @@ public class Escenario {
 		return origen;
 	}
 
-
 	public String getDestino() {
 		return destino;
 	}
@@ -60,5 +59,9 @@ public class Escenario {
 
 	public void setJugador(EjercitoPropio jugador) {
 		this.jugador = jugador;
+	}
+
+	public HashMap<String, Pueblo> getMapaDePueblos() {
+		return mapaDePueblos;
 	}
 }

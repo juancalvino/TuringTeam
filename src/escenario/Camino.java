@@ -1,5 +1,7 @@
 package escenario;
 
+import java.util.Objects;
+
 public class Camino {
     private final Pueblo puebloDestino;
     private final Integer recorridoEnDias;
@@ -15,5 +17,13 @@ public class Camino {
 
     public int getRecorridoEnDias() {
         return this.recorridoEnDias;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Camino camino = (Camino) o;
+        return Objects.equals(getPuebloDestino(), camino.getPuebloDestino()) && Objects.equals(getRecorridoEnDias(), camino.getRecorridoEnDias());
     }
 }

@@ -1,0 +1,5 @@
+4
+1 10 Nortaichian propio
+2 5 Wrives enemigo
+1 -> 2
+1 2 0
