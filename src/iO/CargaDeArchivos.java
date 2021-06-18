@@ -56,13 +56,13 @@ public class CargaDeArchivos {
 
     private void verificarSiEstaListoParaInstanciar() {
         if (!rutaYaEstablecida)
-            throw new Error("El Escenario no se instancio. No se ha establecido la ruta objetivo.");
+            throw new RuntimeException("El Escenario no se instancio. No se ha establecido la ruta objetivo.");
 
         if (!cantidadTotalDePueblosAlcanzada)
-            throw new Error("El Escenario no se instancio. No se han agregado pueblos suficientes acorde al total establecido.");
+            throw new RuntimeException("El Escenario no se instancio. No se han agregado pueblos suficientes acorde al total establecido.");
 
         if (!ejercitoPropioEstablecido) {
-            throw new Error("El Escenario no se instancio. No se ha establecido un pueblo con ejercito propio");
+            throw new RuntimeException("El Escenario no se instancio. No se ha establecido un pueblo con ejercito propio");
         }
     }
 
@@ -132,7 +132,7 @@ public class CargaDeArchivos {
                     cargarUnCamino(trozosDeLinea);
                 } catch (NumberFormatException e) {
                     if (!trozosDeLinea[1].equals("->")) {
-                        throw new FormatoDeLineaInvalidoException("Ruta objetivo ingresada inválida en la línea: " + cantidadDeLineas);
+                        throw new FormatoDeLineaInvalidoException("Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
                     } else {
                         cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
                         // TODO: 16/6/2021 Buscar una forma de verificar si la ruta es alcanzable al momento y guardar dicho valor en un atributo.

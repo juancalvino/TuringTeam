@@ -42,7 +42,7 @@ public class EscenarioTest {
         mapaDePueblos.put("3", pueblo3);
         mapaDePueblos.put("4", pueblo4);
 
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoConsigna.txt");
+        io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoConsigna.txt");
 
         assertEquals(4, escenario.getCantidadDePueblos());
         assertEquals(mapaDePueblos, escenario.getMapaDePueblos());
@@ -76,7 +76,7 @@ public class EscenarioTest {
         mapaDePueblos.put("2", pueblo2);
         mapaDePueblos.put("3", pueblo3);
 
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoLineasDesordenadas.txt");
+        io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoLineasDesordenadas.txt");
 
         assertEquals(mapaDePueblos, escenario.getMapaDePueblos());
         assertEquals("1", escenario.getOrigen());
@@ -86,24 +86,27 @@ public class EscenarioTest {
         assertEquals(0, pueblo3.getEjercito().compareTo(escenario.getMapaDePueblos().get("3").getEjercito()));
     }
 
-    @Test(expected = Error.class)
+    @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarEscenarioSinRutaObjetivo() {
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoRutaObjetivoFaltante.txt");
+    	System.out.println("PRUEBA EXPECTED");
+        io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoRutaObjetivoFaltante.txt");
     }
 
-    @Test(expected = Error.class)
+    @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarPorqueFaltanPueblos() {
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoPueblosFaltantes.txt");
+    	System.out.println("PRUEBA EXPECTED");
+    	io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoPueblosFaltantes.txt");
     }
 
-    @Test(expected = Error.class)
+    @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarUnEscenarioSinEjercitoPropio() {
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoEjercitoPropioFaltante.txt");
+    	System.out.println("PRUEBA EXPECTED");
+    	io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoEjercitoPropioFaltante.txt");
     }
 
     @Test()
     public void deberiaInstanciarCorrectamenteYAvisarDeUnaLineaInvalidaQueNoAfecta() {
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoCorrectoPeroUnaRutaInvalidaDeMas.txt");
+        io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoCorrectoPeroUnaRutaInvalidaDeMas.txt");
         assertTrue(elEscenarioFueInstanciadoAdecuadamente());
     }
 
