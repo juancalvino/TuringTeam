@@ -3,7 +3,7 @@ package escenario;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class Hechizero {
+public class Hechicero {
 
 	 HashMap<String, Pueblo> vertices = Escenario.getInstance().getMapaDePueblos();
 	
