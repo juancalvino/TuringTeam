@@ -2,6 +2,6 @@ package escenario;
 
 import org.junit.Test;
 
-public class OraculoTest {
+public class HechiceroTest {
 	
 }
