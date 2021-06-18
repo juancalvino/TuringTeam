@@ -73,4 +73,8 @@ public class Escenario {
 		this.jugador = jugador;
 	}
 	
+	protected TreeMap<String, Pueblo> getMapaDelPueblos(){
+		return mapaDePueblos;
+	}
+	
 }
