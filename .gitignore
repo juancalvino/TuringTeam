@@ -5,7 +5,3 @@
 # IDEA files
 tp-algo.iml
 .idea
-
-# Eclipse files
-.project
-/bin/
