@@ -25,5 +25,7 @@ public class Hechicero {
 		}
 		return predecesores;
 	}
+	
+
 
 }
