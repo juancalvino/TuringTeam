@@ -131,11 +131,16 @@ public class CargaDeArchivos {
                     verificarSiSegundoTrozoEsParseableParaCrearCamino(trozosDeLinea[1]);
                     cargarUnCamino(trozosDeLinea);
                 } catch (NumberFormatException e) {
-                    if (!trozosDeLinea[1].equals("->")) {
-                        throw new FormatoDeLineaInvalidoException("Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
-                    } else {
-                        cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
-                        // TODO: 16/6/2021 Buscar una forma de verificar si la ruta es alcanzable al momento y guardar dicho valor en un atributo.
+                    try {
+                        if (!trozosDeLinea[1].equals("->")) {
+                            throw new FormatoDeLineaInvalidoException("Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
+                        } else {
+                            cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
+                            // TODO: 16/6/2021 Buscar una forma de verificar si la ruta es alcanzable al momento y guardar dicho valor en un atributo.
+                        }
+                    } catch (FormatoDeLineaInvalidoException fe) {
+                        System.err.println("Advertencia. Problema no critico encontrado en linea: " + cantidadDeLineas + ", formato de ruta invalida.");
+                        // No hace nada, no afecta el proceso.
                     }
                 }
                 break;
@@ -151,20 +156,18 @@ public class CargaDeArchivos {
     }
 
     private void verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida() {
-        if (++contadorDePueblosAgregadosHastaAhora == cantidadTotalDePueblos) {
-            cantidadTotalDePueblosAlcanzada = true;
-        }
+        cantidadTotalDePueblosAlcanzada = ++contadorDePueblosAgregadosHastaAhora == cantidadTotalDePueblos;
     }
 
     // Caso linea de longitud 1
-    private void cargarValorDeCantidadTotalDePueblos(String dato) throws Exception {
+    private void cargarValorDeCantidadTotalDePueblos(String dato) {
         try {
             cantidadTotalDePueblos = verificarValorNumericoPositivo(Integer.parseInt(dato));
+        } catch (ValorNoPositivoException e) {
+            System.err.println("El numero ingresado deberia ser mayor a 0 y se ingreso:" + dato);
+            e.getStackTrace();
         } catch (NumberFormatException e) {
             System.err.println("La cantidad de pueblos debe ser ingresada con un numero entero y se ingreso: " + dato);
-            e.getStackTrace();
-        } catch (RuntimeException e) {
-            System.err.println("El numero ingresado deberia ser mayor a 0 y se ingreso:" + dato);
             e.getStackTrace();
         }
     }

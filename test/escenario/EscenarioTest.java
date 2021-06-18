@@ -1,7 +1,11 @@
 package escenario;
 
-import combatientes.ejercito.*;
-import combatientes.guerrero.*;
+import combatientes.ejercito.EjercitoAliado;
+import combatientes.ejercito.EjercitoEnemigo;
+import combatientes.ejercito.EjercitoPropio;
+import combatientes.guerrero.Nortaichian;
+import combatientes.guerrero.Reralopes;
+import combatientes.guerrero.Wrives;
 import iO.CargaDeArchivos;
 import org.junit.Test;
 
@@ -88,23 +92,23 @@ public class EscenarioTest {
 
     @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarEscenarioSinRutaObjetivo() {
-    	System.out.println("PRUEBA EXPECTED");
+        System.out.println("PRUEBA EXPECTED");
         io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoRutaObjetivoFaltante.txt");
     }
 
     @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarPorqueFaltanPueblos() {
-    	System.out.println("PRUEBA EXPECTED");
-    	io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoPueblosFaltantes.txt");
+        System.out.println("PRUEBA EXPECTED");
+        io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoPueblosFaltantes.txt");
     }
 
     @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarUnEscenarioSinEjercitoPropio() {
-    	System.out.println("PRUEBA EXPECTED");
-    	io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoEjercitoPropioFaltante.txt");
+        System.out.println("PRUEBA EXPECTED");
+        io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoEjercitoPropioFaltante.txt");
     }
 
-    @Test()
+    @Test
     public void deberiaInstanciarCorrectamenteYAvisarDeUnaLineaInvalidaQueNoAfecta() {
         io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoCorrectoPeroUnaRutaInvalidaDeMas.txt");
         assertTrue(elEscenarioFueInstanciadoAdecuadamente());
