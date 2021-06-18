@@ -86,19 +86,22 @@ public class EscenarioTest {
         assertEquals(0, pueblo3.getEjercito().compareTo(escenario.getMapaDePueblos().get("3").getEjercito()));
     }
 
-    @Test(expected = Error.class)
+    @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarEscenarioSinRutaObjetivo() {
+    	System.out.println("PRUEBA EXPECTED");
         io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoRutaObjetivoFaltante.txt");
     }
 
-    @Test(expected = Error.class)
+    @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarPorqueFaltanPueblos() {
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoPueblosFaltantes.txt");
+    	System.out.println("PRUEBA EXPECTED");
+    	io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoPueblosFaltantes.txt");
     }
 
-    @Test(expected = Error.class)
+    @Test(expected = RuntimeException.class)
     public void noDeberiaInstanciarUnEscenarioSinEjercitoPropio() {
-        io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoEjercitoPropioFaltante.txt");
+    	System.out.println("PRUEBA EXPECTED");
+    	io.instanciarElEscenarioEnRuta("src/archivosIO/pruebaArchivoEjercitoPropioFaltante.txt");
     }
 
     @Test()
