@@ -5,11 +5,14 @@ import java.util.Stack;
 
 public class Hechicero {
 
-	HashMap<String, Pueblo> vertices = Escenario.getInstance().getMapaDePueblos();
-
+	 HashMap<String, Pueblo> vertices;
+	
 	public HashMap<String, String> dfs(String inicio) {
 		HashMap<String, String> predecesores = new HashMap<String, String>();
-		Stack<String> pila = new Stack<>();
+		Stack<String> pila = new Stack<String>();
+		
+		vertices = Escenario.getInstance().getMapaDePueblos();
+		
 		for (String vertice : vertices.keySet()) {
 			predecesores.put(vertice, null);
 		}
