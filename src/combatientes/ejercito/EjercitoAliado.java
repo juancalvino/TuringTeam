@@ -11,7 +11,8 @@ public class EjercitoAliado extends Ejercito {
 
 	@Override
 	public void interactuar() {
-		Escenario.getInstance().getJugador().agregarEjercito(this);		
+		Escenario.getInstance().getJugador().descansar();
+		Escenario.getInstance().getJugador().agregarEjercito(this);
 	}
 
 }
