@@ -10,11 +10,16 @@ import java.util.Stack;
 public class Hechicero {
 
 	static Escenario escenario = Escenario.getInstance();
+	Stack<String> recorrido;
 
 	public boolean realizarPrediccionDeAventura() {
-		calcularRecorrido(dijkstra(escenario.getOrigen()), escenario.getOrigen(), escenario.getDestino());
-		// TODO: 19/6/2021 Completar
+		recorrido = calcularRecorrido(dijkstra(escenario.getOrigen()));
+		avanzarAlSiguientePueblo();
 		return false;
+	}
+
+	private void avanzarAlSiguientePueblo() {
+		escenario.getMapaDePueblos().get(recorrido.pop());
 	}
 
 	private HashMap<String, String> dijkstra(String inicio) {
@@ -56,12 +61,12 @@ public class Hechicero {
 		return camino;
 	}
 
-	private Stack<String> calcularRecorrido(HashMap<String, String> camino, String origen, String destino) {
+	private Stack<String> calcularRecorrido(HashMap<String, String> camino) {
 		Stack<String> recorrido = new Stack<>();
-		recorrido.push(destino);
-		String claveAuxiliar = destino;
+		recorrido.push(escenario.getDestino());
+		String claveAuxiliar = recorrido.peek();
 
-		while (!claveAuxiliar.equals(origen)) {
+		while (!claveAuxiliar.equals(escenario.getOrigen())) {
 			recorrido.push(camino.get(claveAuxiliar));
 			claveAuxiliar = recorrido.peek();
 		}
