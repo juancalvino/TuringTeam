@@ -1,0 +1,13 @@
+•	Recibir mapa de Dijkstra
+•	Crear pila y apilar el ‘destino’
+•	Nuevo String ‘clave’ = destino;
+•	Mientras no se haya alcanzado el ‘origen’
+o	Buscar ‘clave’ en mapa y apilar su valor
+o	clave = valor;
+
+
+
+1
+2
+3
+4
