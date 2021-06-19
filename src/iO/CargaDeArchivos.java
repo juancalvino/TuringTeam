@@ -46,7 +46,6 @@ public class CargaDeArchivos {
     public void instanciarElEscenarioEnRuta(String ruta) {
         cargarArchivo(ruta);
         verificarSiEstaListoParaInstanciar();
-        cargarCantidadTotalDePueblosAlEscenario();
         cargarMapaAlEscenario();
         cargarJugadorAlEscenario();
         cargarRutaObjetivoAlEscenario();
@@ -68,9 +67,6 @@ public class CargaDeArchivos {
 
 
     // METODOS PARA CARGAR DATOS AL ESCENARIO: BEGIN
-    private void cargarCantidadTotalDePueblosAlEscenario() {
-        Escenario.getInstance().setCantidadDePueblos(this.cantidadTotalDePueblos);
-    }
 
     private void cargarRutaObjetivoAlEscenario() {
         Escenario.getInstance().cargarRuta(this.origen, this.destino);

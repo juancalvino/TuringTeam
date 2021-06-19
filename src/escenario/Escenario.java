@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 public class Escenario {
 
-	private int cantidadDePueblos;
 	private HashMap<String, Pueblo> mapaDePueblos;
 	private EjercitoPropio jugador;
 	private String origen;
@@ -15,7 +14,6 @@ public class Escenario {
 	private static Escenario unicaInstancia;
 
 	private Escenario() {
-		this.cantidadDePueblos = 0;
 		this.mapaDePueblos = new HashMap<>();
 		this.origen = null;
 		this.destino = null;
@@ -29,11 +27,7 @@ public class Escenario {
 	}
 
 	public int getCantidadDePueblos() {
-		return cantidadDePueblos;
-	}
-
-	public void setCantidadDePueblos(int cantidadDePueblos) {
-		this.cantidadDePueblos = cantidadDePueblos;
+		return mapaDePueblos.size();
 	}
 
 	public void setMapaDePueblos(HashMap<String, Pueblo> mapaDePueblos) {
