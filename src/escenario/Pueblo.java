@@ -50,4 +50,9 @@ public class Pueblo {
         Pueblo pueblo = (Pueblo) o;
         return Objects.equals(caminos, pueblo.caminos) && Objects.equals(nombre, pueblo.nombre);
     }
+
+    public void interactuar() {
+    	ejercito.interactuar();
+    }
+    
 }

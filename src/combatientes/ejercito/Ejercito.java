@@ -80,4 +80,7 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 		
 		return 1;
 	}
+
+	public abstract void interactuar();
+
 }

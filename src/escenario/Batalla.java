@@ -5,7 +5,7 @@ import combatientes.ejercito.EjercitoPropio;
 
 public class Batalla {
 
-    public Combatiente obtenerSobreviviente(EjercitoPropio ejercitoPropio, EjercitoEnemigo ejercitoEnemigo) {
+    public static Combatiente obtenerSobreviviente(EjercitoPropio ejercitoPropio, EjercitoEnemigo ejercitoEnemigo) {
 
         boolean seguirBatallando = true;
         Combatiente atacante = ejercitoPropio;

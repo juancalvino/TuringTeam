@@ -11,15 +11,17 @@ public class Hechicero {
 
 	static Escenario escenario = Escenario.getInstance();
 	Stack<String> recorrido;
-
+	
 	public boolean realizarPrediccionDeAventura() {
 		recorrido = calcularRecorrido(dijkstra(escenario.getOrigen()));
-		avanzarAlSiguientePueblo();
+		while(!recorrido.isEmpty() && avanzarAlSiguientePueblo()) {
+		}
 		return false;
 	}
 
-	private void avanzarAlSiguientePueblo() {
-		escenario.getMapaDePueblos().get(recorrido.pop());
+	private boolean avanzarAlSiguientePueblo() {
+		escenario.getMapaDePueblos().get(recorrido.pop()).interactuar();
+		return escenario.getJugador().getSalud() > 0;
 	}
 
 	private HashMap<String, String> dijkstra(String inicio) {

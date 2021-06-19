@@ -60,7 +60,7 @@ public class Reralopes extends Guerrero {
 	public void descansar() {
 		ataquesConcentrados = 3;
 	}
-	
+
 	@Override
 	protected Guerrero crearUnidad() {
 		return new Reralopes();

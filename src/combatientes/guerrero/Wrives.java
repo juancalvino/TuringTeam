@@ -31,7 +31,7 @@ public class Wrives extends Guerrero {
 		salud += 50;
 		activoParaAtacar = false;
 	}
-	
+
 	@Override
 	protected Guerrero crearUnidad() {
 		return new Wrives();
