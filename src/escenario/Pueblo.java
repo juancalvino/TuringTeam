@@ -9,6 +9,7 @@ import java.util.Objects;
 
 
 public class Pueblo {
+	//TODO Preguntar que conviene mas que el camino lo tenga el escenario o el pueblo?
     private final HashMap<String, Camino> caminos = new HashMap<>();
     private Ejercito ejercito;
     private final String nombre;
