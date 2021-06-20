@@ -1,11 +1,8 @@
 package escenario;
 
-import iO.CargaDeArchivos;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 public class Hechicero {
 
@@ -34,14 +31,6 @@ public class Hechicero {
                     + " guerreros. El recorrido tuvo una duracion de: " + tiempoDeRecorrido + " dias.";
         }
         return resultado;
-    }
-
-    public static void main(String[] args) {
-        Hechicero hechicero = new Hechicero();
-        CargaDeArchivos carga = new CargaDeArchivos();
-        carga.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoConsigna.txt");
-        System.out.println(hechicero.calcularRecorrido(hechicero.dijkstra("1")));
-        System.out.println(hechicero.realizarPrediccionDeAventura());
     }
 
     private boolean avanzarAlSiguientePueblo(String actual) {
@@ -88,25 +77,14 @@ public class Hechicero {
         return camino;
     }
 
-    private Stack<String> calcularRecorridoYTiempoARecorrer(HashMap<String, String> camino) {
-        Stack<String> recorrido = new Stack<>();
-        recorrido.push(escenario.getDestino());
-        String claveAuxiliar = recorrido.peek();
-
-        while (!camino.get(claveAuxiliar).equals(escenario.getOrigen())) {
-            recorrido.push(camino.get(claveAuxiliar));
-            tiempoDeRecorrido += escenario.getMapaDePueblos().get(recorrido.peek()).getCaminosAdyacentes().get(claveAuxiliar).getRecorridoEnDias();
-            claveAuxiliar = recorrido.peek();
-        }
-        return recorrido;
-    }
-
     public HashMap<String, String> calcularRecorrido(HashMap<String, String> camino) {
         HashMap<String, String> recorrido = new HashMap<>();
         for (Map.Entry<String, String> entrada : camino.entrySet()) {
             String key = entrada.getKey();
             String value = entrada.getValue();
-            recorrido.put(value, key);
+            if (!recorrido.containsKey(value)) {
+                recorrido.put(value, key);
+            }
         }
         return recorrido;
     }
