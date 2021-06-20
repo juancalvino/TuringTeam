@@ -1,5 +1,6 @@
 package escenario;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import iO.CargaDeArchivos;
@@ -12,6 +13,14 @@ public class HechiceroTest {
     @Test
     public void hechiceroUno() {
         io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoConsigna.txt");
-        hechicero.realizarPrediccionDeAventura();
+        String prediccion = "Mision exitosa. Sobrevivieron: 75 guerreros. El recorrido tuvo una duracion de: 22 dias.";
+        Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
+    }
+
+    @Test
+    public void hechiceroDos() {
+        io.instanciarElEscenarioEnRuta("test/archivosHechicero/pruebaCaso1.txt");
+        String prediccion = "null";
+        Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
     }
 }

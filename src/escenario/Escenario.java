@@ -6,56 +6,56 @@ import java.util.HashMap;
 
 public class Escenario {
 
-	private HashMap<String, Pueblo> mapaDePueblos;
-	private EjercitoPropio jugador;
-	private String origen;
-	private String destino;
+    private HashMap<String, Pueblo> mapaDePueblos;
+    private EjercitoPropio jugador;
+    private String origen;
+    private String destino;
 
-	private static Escenario unicaInstancia;
+    private static Escenario unicaInstancia;
 
-	private Escenario() {
-		this.mapaDePueblos = new HashMap<>();
-		this.origen = null;
-		this.destino = null;
-	}
+    private Escenario() {
+        this.mapaDePueblos = new HashMap<>();
+        this.origen = null;
+        this.destino = null;
+    }
 
-	public static Escenario getInstance() {
-		if (unicaInstancia == null) {
-			unicaInstancia = new Escenario();
-		}
-		return unicaInstancia;
-	}
+    public static Escenario getInstance() {
+        if (unicaInstancia == null) {
+            unicaInstancia = new Escenario();
+        }
+        return unicaInstancia;
+    }
 
-	public int getCantidadDePueblos() {
-		return mapaDePueblos.size();
-	}
+    public int getCantidadDePueblos() {
+        return mapaDePueblos.size();
+    }
 
-	public void setMapaDePueblos(HashMap<String, Pueblo> mapaDePueblos) {
-		this.mapaDePueblos = mapaDePueblos;
-	}
+    public void setMapaDePueblos(HashMap<String, Pueblo> mapaDePueblos) {
+        this.mapaDePueblos = mapaDePueblos;
+    }
 
-	public void cargarRuta(String origen, String destino) {
-		this.origen = origen;
-		this.destino = destino;
-	}
+    public void cargarRuta(String origen, String destino) {
+        this.origen = origen;
+        this.destino = destino;
+    }
 
-	public String getOrigen() {
-		return origen;
-	}
+    public String getOrigen() {
+        return origen;
+    }
 
-	public String getDestino() {
-		return destino;
-	}
+    public String getDestino() {
+        return destino;
+    }
 
-	public EjercitoPropio getJugador() {
-		return jugador;
-	}
+    public EjercitoPropio getJugador() {
+        return jugador;
+    }
 
-	public void setJugador(EjercitoPropio jugador) {
-		this.jugador = jugador;
-	}
+    public void setJugador(EjercitoPropio jugador) {
+        this.jugador = jugador;
+    }
 
-	public HashMap<String, Pueblo> getMapaDePueblos() {
-		return mapaDePueblos;
-	}
+    public HashMap<String, Pueblo> getMapaDePueblos() {
+        return mapaDePueblos;
+    }
 }

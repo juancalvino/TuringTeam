@@ -10,19 +10,24 @@ import java.util.Stack;
 public class Hechicero {
 
     static Escenario escenario = Escenario.getInstance();
-    Stack<String> recorrido;
+    HashMap<String, String> recorrido = new HashMap<>();
+    int tiempoDeRecorrido;
+
+    public Hechicero() {
+    }
 
     public String realizarPrediccionDeAventura() {
         String resultado;
+        tiempoDeRecorrido = 0;
         recorrido = calcularRecorrido(dijkstra(escenario.getOrigen()));
+        String puebloActual = escenario.getOrigen();
 
-        int tiempoDeRecorrido = 0;
-        while (!recorrido.isEmpty() && avanzarAlSiguientePueblo()) {
-            // TODO: 19/6/2021 Implementar el calculo del tiempo de recorrido.
-            tiempoDeRecorrido++;
+        while (!puebloActual.equals(escenario.getDestino()) && avanzarAlSiguientePueblo(puebloActual)) {
+            tiempoDeRecorrido += escenario.getMapaDePueblos().get(puebloActual).getCaminosAdyacentes().get(recorrido.get(puebloActual)).getRecorridoEnDias();
+            puebloActual = recorrido.get(puebloActual);
         }
 
-        if (!recorrido.isEmpty()) {
+        if (!puebloActual.equals(escenario.getDestino())) {
             resultado = "Mision fallida.";
         } else {
             resultado = "Mision exitosa. Sobrevivieron: " + escenario.getJugador().cantidadDeGuerreros()
@@ -35,11 +40,12 @@ public class Hechicero {
         Hechicero hechicero = new Hechicero();
         CargaDeArchivos carga = new CargaDeArchivos();
         carga.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoConsigna.txt");
+        System.out.println(hechicero.calcularRecorrido(hechicero.dijkstra("1")));
         System.out.println(hechicero.realizarPrediccionDeAventura());
     }
 
-    private boolean avanzarAlSiguientePueblo() {
-        escenario.getMapaDePueblos().get(recorrido.pop()).interactuar();
+    private boolean avanzarAlSiguientePueblo(String actual) {
+        escenario.getMapaDePueblos().get(recorrido.get(actual)).interactuar();
         return escenario.getJugador().getSalud() > 0;
     }
 
@@ -82,17 +88,26 @@ public class Hechicero {
         return camino;
     }
 
-    private Stack<String> calcularRecorrido(HashMap<String, String> camino) {
+    private Stack<String> calcularRecorridoYTiempoARecorrer(HashMap<String, String> camino) {
         Stack<String> recorrido = new Stack<>();
         recorrido.push(escenario.getDestino());
         String claveAuxiliar = recorrido.peek();
 
         while (!camino.get(claveAuxiliar).equals(escenario.getOrigen())) {
             recorrido.push(camino.get(claveAuxiliar));
+            tiempoDeRecorrido += escenario.getMapaDePueblos().get(recorrido.peek()).getCaminosAdyacentes().get(claveAuxiliar).getRecorridoEnDias();
             claveAuxiliar = recorrido.peek();
         }
         return recorrido;
     }
 
-
+    public HashMap<String, String> calcularRecorrido(HashMap<String, String> camino) {
+        HashMap<String, String> recorrido = new HashMap<>();
+        for (Map.Entry<String, String> entrada : camino.entrySet()) {
+            String key = entrada.getKey();
+            String value = entrada.getValue();
+            recorrido.put(value, key);
+        }
+        return recorrido;
+    }
 }
