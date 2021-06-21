@@ -29,10 +29,10 @@ public class CargaDeArchivos {
     /**
      * Parametros utilizados para verificar si es adecuado instanciar el Escenario
      */
-    private boolean cantidadTotalDePueblosAlcanzada = false;
-    private boolean ejercitoPropioEstablecido = false;
-    private boolean rutaYaEstablecida = false;
-    private int contadorDePueblosAgregadosHastaAhora = 0;
+    private boolean cantidadTotalDePueblosAlcanzada;
+    private boolean ejercitoPropioEstablecido;
+    private boolean rutaYaEstablecida;
+    private int contadorDePueblosAgregadosHastaAhora;
 
 
     /**
@@ -44,11 +44,19 @@ public class CargaDeArchivos {
     }
 
     public void instanciarElEscenarioEnRuta(String ruta) {
+        establecerValoresPorDefecto();
         cargarArchivo(ruta);
         verificarSiEstaListoParaInstanciar();
         cargarMapaAlEscenario();
         cargarJugadorAlEscenario();
         cargarRutaObjetivoAlEscenario();
+    }
+
+    private void establecerValoresPorDefecto() {
+        cantidadTotalDePueblosAlcanzada = false;
+        ejercitoPropioEstablecido = false;
+        rutaYaEstablecida = false;
+        contadorDePueblosAgregadosHastaAhora = 0;
     }
 
     // TODO: 16/6/2021 Implementar un metodo para verificar si la ruta objetivo es ALCANZABLE antes de instanciar

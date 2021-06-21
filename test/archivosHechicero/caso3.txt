@@ -1,0 +1,12 @@
+5
+1 5 Reralopes propio
+2 5 Radaiteran aliado
+3 5 Wrives enemigo
+4 5 Radaiteran enemigo
+5 5 Nortaichian enemigo
+1 -> 5
+1 2 2
+2 3 2
+3 4 2
+4 5 2
+1 5 10

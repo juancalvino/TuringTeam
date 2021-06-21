@@ -1,0 +1,17 @@
+6
+1 -> 6
+1 50000 Wrives propio
+2 60000 Reralopes aliado
+3 30000 Radaiteran aliado
+4 20000 Nortaichian aliado
+5 10000 Wrives aliado
+6 300000 Nortaichian enemigo
+1 2 3
+1 4 8
+1 6 20
+2 3 9
+2 4 4
+3 5 3
+4 3 4
+4 5 8
+5 6 5

@@ -25,7 +25,7 @@ public class Hechicero {
         }
 
         if (!puebloActual.equals(escenario.getDestino())) {
-            resultado = "Mision fallida.";
+            resultado = "Mision fallida. Ultimo pueblo alcanzado: " + puebloActual;
         } else {
             resultado = "Mision exitosa. Sobrevivieron: " + escenario.getJugador().cantidadDeGuerreros()
                     + " guerreros. El recorrido tuvo una duracion de: " + tiempoDeRecorrido + " dias.";
@@ -79,12 +79,10 @@ public class Hechicero {
 
     public HashMap<String, String> calcularRecorrido(HashMap<String, String> camino) {
         HashMap<String, String> recorrido = new HashMap<>();
-        for (Map.Entry<String, String> entrada : camino.entrySet()) {
-            String key = entrada.getKey();
-            String value = entrada.getValue();
-            if (!recorrido.containsKey(value)) {
-                recorrido.put(value, key);
-            }
+        String actual = escenario.getDestino();
+        while (actual != null) {
+            recorrido.put(camino.get(actual), actual);
+            actual = camino.get(actual);
         }
         return recorrido;
     }
