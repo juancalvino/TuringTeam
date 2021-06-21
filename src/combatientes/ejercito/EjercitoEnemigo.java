@@ -10,6 +10,9 @@ public class EjercitoEnemigo extends Ejercito {
 		super(tipo, cantidad);
 	}
 
+	/**
+	 * Batalla con el EjercitoPropio
+	 */
 	@Override
 	public void interactuar() {
 		Batalla.obtenerSobreviviente(Escenario.getInstance().getJugador(), this);

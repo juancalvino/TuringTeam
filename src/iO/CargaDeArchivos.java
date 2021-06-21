@@ -14,7 +14,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 public class CargaDeArchivos {
 
     /**
@@ -26,13 +25,13 @@ public class CargaDeArchivos {
     private String origen;
     private String destino;
 
-    /**
-     * Parametros utilizados para verificar si es adecuado instanciar el Escenario
-     */
-    private boolean cantidadTotalDePueblosAlcanzada;
-    private boolean ejercitoPropioEstablecido;
-    private boolean rutaYaEstablecida;
-    private int contadorDePueblosAgregadosHastaAhora;
+	/**
+	 * Parametros utilizados para verificar si es adecuado instanciar el Escenario
+	 */
+	private boolean cantidadTotalDePueblosAlcanzada;
+	private boolean ejercitoPropioEstablecido;
+	private boolean rutaYaEstablecida;
+	private int contadorDePueblosAgregadosHastaAhora;
 
 
     /**
@@ -59,8 +58,6 @@ public class CargaDeArchivos {
         contadorDePueblosAgregadosHastaAhora = 0;
     }
 
-    // TODO: 16/6/2021 Implementar un metodo para verificar si la ruta objetivo es ALCANZABLE antes de instanciar
-
     private void verificarSiEstaListoParaInstanciar() {
         if (!rutaYaEstablecida)
             throw new RuntimeException("El Escenario no se instancio. No se ha establecido la ruta objetivo.");
@@ -72,7 +69,6 @@ public class CargaDeArchivos {
             throw new RuntimeException("El Escenario no se instancio. No se ha establecido un pueblo con ejercito propio");
         }
     }
-
 
     // METODOS PARA CARGAR DATOS AL ESCENARIO: BEGIN
 
@@ -89,9 +85,12 @@ public class CargaDeArchivos {
     }
     // END
 
-    // TODO: 16/6/2021  SI ES POSIBLE, MODULARIZAR TODO ESTE MASACOTE DE CLASE PARA DELEGAR RESPONSABILIDADES.
-
-    public void cargarArchivo(String pArchivo) {
+	/**
+	 * Carga el archivo pasado como parametro
+	 *
+	 * @param pArchivo: ruta de contenido del archivo
+	 */
+	public void cargarArchivo(String pArchivo) {
 
         FileReader archivo = null;
         BufferedReader lector;
@@ -122,46 +121,53 @@ public class CargaDeArchivos {
         }
     }
 
-    public void decodificarLinea(String linea) throws Exception {
-        String[] trozosDeLinea = linea.trim().split(" ");
+	/**
+	 * Verifica que las lineas del archivo esten bien formadas
+	 *
+	 * @param linea: linea actual del archivo
+	 * @throws Exception
+	 */
+	public void decodificarLinea(String linea) throws Exception {
+		String[] trozosDeLinea = linea.trim().split(" ");
 
-        switch (trozosDeLinea.length) {
-            case 1:
-                cargarValorDeCantidadTotalDePueblos(trozosDeLinea[0]);
-                break;
+		switch (trozosDeLinea.length) {
+		case 1:
+			cargarValorDeCantidadTotalDePueblos(trozosDeLinea[0]);
+			break;
 
-            case 3:
-                try {
-                    verificarSiSegundoTrozoEsParseableParaCrearCamino(trozosDeLinea[1]);
-                    cargarUnCamino(trozosDeLinea);
-                } catch (NumberFormatException e) {
-                    try {
-                        if (!trozosDeLinea[1].equals("->")) {
-                            throw new FormatoDeLineaInvalidoException("Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
-                        } else {
-                            cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
-                            // TODO: 16/6/2021 Buscar una forma de verificar si la ruta es alcanzable al momento y guardar dicho valor en un atributo.
-                        }
-                    } catch (FormatoDeLineaInvalidoException fe) {
-                        System.err.println("Advertencia. Problema no critico encontrado en linea: " + cantidadDeLineas + ", formato de ruta invalida.");
-                        // No hace nada, no afecta el proceso.
-                    }
-                }
-                break;
+		case 3:
+			try {
+				verificarSiSegundoTrozoEsParseableParaCrearCamino(trozosDeLinea[1]);
+				cargarUnCamino(trozosDeLinea);
+			} catch (NumberFormatException e) {
+				try {
+					if (!trozosDeLinea[1].equals("->")) {
+						throw new FormatoDeLineaInvalidoException(
+								"Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
+					} else {
+						cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
+					}
+				} catch (FormatoDeLineaInvalidoException fe) {
+					System.err.println("Advertencia. Problema no critico encontrado en linea: " + cantidadDeLineas
+							+ ", formato de ruta invalida.");
+					// No hace nada, no afecta el proceso.
+				}
+			}
+			break;
 
-            case 4:
-                agregarUnPuebloAlEscenario(trozosDeLinea);
-                verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida();
-                break;
+		case 4:
+			agregarUnPuebloAlEscenario(trozosDeLinea);
+			verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida();
+			break;
 
-            default:
-                throw new FormatoDeLineaInvalidoException("Formato de linea invalido en linea: " + cantidadDeLineas);
-        }
-    }
+		default:
+			throw new FormatoDeLineaInvalidoException("Formato de linea invalido en linea: " + cantidadDeLineas);
+		}
+	}
 
-    private void verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida() {
-        cantidadTotalDePueblosAlcanzada = ++contadorDePueblosAgregadosHastaAhora == cantidadTotalDePueblos;
-    }
+	private void verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida() {
+		cantidadTotalDePueblosAlcanzada = ++contadorDePueblosAgregadosHastaAhora == cantidadTotalDePueblos;
+	}
 
     // Caso linea de longitud 1
     private void cargarValorDeCantidadTotalDePueblos(String dato) {

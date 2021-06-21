@@ -44,16 +44,16 @@ public class RadaiteranTest {
 		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 	}
-	
+
 	@Test
 	public void alRecibirAtaquesLoHaceNormalmente() {
 		enemigo = new GuerreroHack(200, 5);
-		
+
 		radaiteran.recibirAtaque(enemigo.atacar());
 		radaiteran.recibirAtaque(enemigo.atacar());
 		radaiteran.recibirAtaque(enemigo.atacar());
 		radaiteran.recibirAtaque(enemigo.atacar());
-		
+
 		Assert.assertEquals(16, radaiteran.getSalud());
 	}
 
@@ -61,14 +61,14 @@ public class RadaiteranTest {
 	public void descansarNoAfectaAlGuerrero() {
 		enemigo = new GuerreroHack(58, 10);
 		radaiteran.recibirAtaque(enemigo.atacar());
-		
+
 		radaiteran.descansar();
 		Assert.assertEquals(26, radaiteran.getSalud());
 
 		enemigo.recibirAtaque(radaiteran.atacar());
 		Assert.assertEquals(2, enemigo.getSalud());
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void alRecibirUnAtaqueNegativoLanzaExcepcion() {
 		radaiteran.recibirAtaque(-50);
