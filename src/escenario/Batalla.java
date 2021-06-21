@@ -6,10 +6,11 @@ import combatientes.ejercito.EjercitoPropio;
 public class Batalla {
 
 	/**
-	 * Los ejercitos ingresados como parametros combaten.
+	 * enfrenta dos ejercitos pasados como parametro
+	 * 
 	 * @param ejercitoPropio
 	 * @param ejercitoEnemigo
-	 * @return el ejercito sobreviviente
+	 * @return el ejercito sobreviviente 
 	 */
     public static Combatiente obtenerSobreviviente(EjercitoPropio ejercitoPropio, EjercitoEnemigo ejercitoEnemigo) {
 

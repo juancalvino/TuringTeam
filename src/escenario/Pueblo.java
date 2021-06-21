@@ -31,10 +31,16 @@ public class Pueblo {
         return Collections.unmodifiableMap(caminos);
     }
 
+    /**
+     * @return devuelve el nombre del pueblo
+     */
     public String getNombre() {
         return this.nombre;
     }
 
+    /**
+     * @return devuelve el ejercito
+     */
     public Ejercito getEjercito() {
         return this.ejercito;
     }

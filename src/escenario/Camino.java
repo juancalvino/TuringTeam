@@ -36,7 +36,7 @@ public class Camino implements Comparable<Camino> {
     }
 
     /**
-     * Compara en dias el recorrido del camino con otro camino.
+     * compara dos caminos para elegir aquel que sea mas corto en cantidad de dias.
      */
     @Override
     public int compareTo(Camino otroCamino) {

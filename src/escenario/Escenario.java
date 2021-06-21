@@ -23,7 +23,8 @@ public class Escenario {
     }
 
     /**
-     * @return el Escenario
+     * se crea una instancia unica del escenario.
+     * @return el escenario
      */
     public static Escenario getInstance() {
         if (unicaInstancia == null) {
