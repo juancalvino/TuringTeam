@@ -13,6 +13,9 @@ public class Hechicero {
     public Hechicero() {
     }
 
+    /**
+     * @return si la aventura fallo o fue exitosa.
+     */
     public String realizarPrediccionDeAventura() {
         String resultado;
         tiempoDeRecorrido = 0;
@@ -77,6 +80,11 @@ public class Hechicero {
         return camino;
     }
 
+    /**
+     * calcula el recorrido para nuestra aventura.
+     * @param camino
+     * @return el recorrido mas optimo
+     */
     public HashMap<String, String> calcularRecorrido(HashMap<String, String> camino) {
         HashMap<String, String> recorrido = new HashMap<>();
         for (Map.Entry<String, String> entrada : camino.entrySet()) {
