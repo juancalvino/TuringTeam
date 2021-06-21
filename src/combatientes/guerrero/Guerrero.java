@@ -65,7 +65,6 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero> {
 		return -1;
 	}
 
-	
 	/**
 	 * Cambia el estado de 'combatio' a true.
 	 */
@@ -83,6 +82,7 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero> {
 
 	/**
 	 * Crea una lista de Guerreros
+	 * 
 	 * @param cantidad debe ser mayor o igual a 0
 	 * @return lista de Guerreros
 	 */
@@ -98,6 +98,7 @@ public abstract class Guerrero implements Combatiente, Comparable<Guerrero> {
 
 	/**
 	 * Crea un guerrero
+	 * 
 	 * @return Guerrero
 	 */
 	protected abstract Guerrero crearUnidad();

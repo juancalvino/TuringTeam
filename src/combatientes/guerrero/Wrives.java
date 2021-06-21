@@ -16,8 +16,8 @@ public class Wrives extends Guerrero {
 	}
 
 	/**
-	 * Si esta inactivo su danio es 0.
-	 * Hace con 2 veces su daño, cada 2 ataques
+	 * Si esta inactivo su danio es 0. Hace con 2 veces su daño, cada 2 ataques
+	 * 
 	 * @return ataque.
 	 */
 	@Override
@@ -38,17 +38,15 @@ public class Wrives extends Guerrero {
 	}
 
 	/**
-	 * Descansa.
-	 * Su salud maxima aumenta en 50.
-	 * Camba su estado 'activoParaAtacar' en False.
+	 * Descansa. Su salud maxima aumenta en 50. Camba su estado 'activoParaAtacar'
+	 * en False.
 	 */
 	@Override
 	public void descansar() {
 		salud += 50;
 		activoParaAtacar = false;
 	}
-	
-	
+
 	/**
 	 * @return una nueva instancia de la clase.
 	 */

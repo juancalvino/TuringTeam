@@ -12,6 +12,7 @@ public class EjercitoUnico extends Ejercito {
 
 	/**
 	 * Prepara la instancia del EjercitoUnico para ser utilizada
+	 * 
 	 * @param tipo
 	 * @param cantidad tiene que ser mayor o igual a 0
 	 */
@@ -28,8 +29,7 @@ public class EjercitoUnico extends Ejercito {
 
 	@Override
 	public void interactuar() {
-	// no hace nada
+		// no hace nada
 	}
-
 
 }

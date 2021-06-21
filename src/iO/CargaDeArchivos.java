@@ -14,275 +14,283 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 public class CargaDeArchivos {
 
-    /**
-     * Parametros utilizados para instanciar el Escenario
-     */
-    private int cantidadTotalDePueblos;
-    private final HashMap<String, Pueblo> mapaDePueblos = new HashMap<>();
-    private EjercitoPropio ejercitoPropio = null;
-    private String origen;
-    private String destino;
+	/**
+	 * Parametros utilizados para instanciar el Escenario
+	 */
+	private int cantidadTotalDePueblos;
+	private final HashMap<String, Pueblo> mapaDePueblos = new HashMap<>();
+	private EjercitoPropio ejercitoPropio = null;
+	private String origen;
+	private String destino;
 
-    /**
-     * Parametros utilizados para verificar si es adecuado instanciar el Escenario
-     */
-    private boolean cantidadTotalDePueblosAlcanzada = false;
-    private boolean ejercitoPropioEstablecido = false;
-    private boolean rutaYaEstablecida = false;
-    private int contadorDePueblosAgregadosHastaAhora = 0;
+	/**
+	 * Parametros utilizados para verificar si es adecuado instanciar el Escenario
+	 */
+	private boolean cantidadTotalDePueblosAlcanzada = false;
+	private boolean ejercitoPropioEstablecido = false;
+	private boolean rutaYaEstablecida = false;
+	private int contadorDePueblosAgregadosHastaAhora = 0;
 
+	/**
+	 * cantidadDeLineas: Parametro usado para devolver el numero de linea en caso de
+	 * excepciones
+	 */
+	private int cantidadDeLineas = 1;
 
-    /**
-     * cantidadDeLineas: Parametro usado para devolver el numero de linea en caso de excepciones
-     */
-    private int cantidadDeLineas = 1;
+	public CargaDeArchivos() {
+	}
 
-    public CargaDeArchivos() {
-    }
+	public void instanciarElEscenarioEnRuta(String ruta) {
+		cargarArchivo(ruta);
+		verificarSiEstaListoParaInstanciar();
+		cargarMapaAlEscenario();
+		cargarJugadorAlEscenario();
+		cargarRutaObjetivoAlEscenario();
+	}
 
-    public void instanciarElEscenarioEnRuta(String ruta) {
-        cargarArchivo(ruta);
-        verificarSiEstaListoParaInstanciar();
-        cargarMapaAlEscenario();
-        cargarJugadorAlEscenario();
-        cargarRutaObjetivoAlEscenario();
-    }
+	private void verificarSiEstaListoParaInstanciar() {
+		if (!rutaYaEstablecida)
+			throw new RuntimeException("El Escenario no se instancio. No se ha establecido la ruta objetivo.");
 
-    private void verificarSiEstaListoParaInstanciar() {
-        if (!rutaYaEstablecida)
-            throw new RuntimeException("El Escenario no se instancio. No se ha establecido la ruta objetivo.");
+		if (!cantidadTotalDePueblosAlcanzada)
+			throw new RuntimeException(
+					"El Escenario no se instancio. No se han agregado pueblos suficientes acorde al total establecido.");
 
-        if (!cantidadTotalDePueblosAlcanzada)
-            throw new RuntimeException("El Escenario no se instancio. No se han agregado pueblos suficientes acorde al total establecido.");
+		if (!ejercitoPropioEstablecido) {
+			throw new RuntimeException(
+					"El Escenario no se instancio. No se ha establecido un pueblo con ejercito propio");
+		}
+	}
 
-        if (!ejercitoPropioEstablecido) {
-            throw new RuntimeException("El Escenario no se instancio. No se ha establecido un pueblo con ejercito propio");
-        }
-    }
+	// METODOS PARA CARGAR DATOS AL ESCENARIO: BEGIN
 
+	private void cargarRutaObjetivoAlEscenario() {
+		Escenario.getInstance().cargarRuta(this.origen, this.destino);
+	}
 
-    // METODOS PARA CARGAR DATOS AL ESCENARIO: BEGIN
+	private void cargarJugadorAlEscenario() {
+		Escenario.getInstance().setJugador(ejercitoPropio);
+	}
 
-    private void cargarRutaObjetivoAlEscenario() {
-        Escenario.getInstance().cargarRuta(this.origen, this.destino);
-    }
+	private void cargarMapaAlEscenario() {
+		Escenario.getInstance().setMapaDePueblos(mapaDePueblos);
+	}
+	// END
 
-    private void cargarJugadorAlEscenario() {
-        Escenario.getInstance().setJugador(ejercitoPropio);
-    }
+	/**
+	 * Carga el archivo pasado como parametro
+	 * 
+	 * @param pArchivo: ruta de contenido del archivo
+	 */
+	public void cargarArchivo(String pArchivo) {
 
-    private void cargarMapaAlEscenario() {
-        Escenario.getInstance().setMapaDePueblos(mapaDePueblos);
-    }
-    // END
+		FileReader archivo = null;
+		BufferedReader lector;
 
-    /**
-     * Carga el archivo pasado como parametro
-     * @param pArchivo: ruta de contenido del archivo
-     */
-    public void cargarArchivo(String pArchivo) {
+		try {
+			archivo = new FileReader(pArchivo);
+			lector = new BufferedReader(archivo);
+			String linea;
 
-        FileReader archivo = null;
-        BufferedReader lector;
+			while ((linea = lector.readLine()) != null) {
+				try {
+					decodificarLinea(linea);
+					cantidadDeLineas++;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 
-        try {
-            archivo = new FileReader(pArchivo);
-            lector = new BufferedReader(archivo);
-            String linea;
+		} finally {
+			if (archivo != null)
+				try {
+					archivo.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+	}
 
-            while ((linea = lector.readLine()) != null) {
-                try {
-                    decodificarLinea(linea);
-                    cantidadDeLineas++;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+	/**
+	 * Verifica que las lineas del archivo esten bien formadas
+	 * 
+	 * @param linea
+	 * @throws Exception
+	 */
+	public void decodificarLinea(String linea) throws Exception {
+		String[] trozosDeLinea = linea.trim().split(" ");
 
-        } finally {
-            if (archivo != null)
-                try {
-                    archivo.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-        }
-    }
+		switch (trozosDeLinea.length) {
+		case 1:
+			cargarValorDeCantidadTotalDePueblos(trozosDeLinea[0]);
+			break;
 
-    /**
-     * Verifica que las lineas del archivo esten bien formadas
-     * @param linea
-     * @throws Exception
-     */
-    public void decodificarLinea(String linea) throws Exception {
-        String[] trozosDeLinea = linea.trim().split(" ");
+		case 3:
+			try {
+				verificarSiSegundoTrozoEsParseableParaCrearCamino(trozosDeLinea[1]);
+				cargarUnCamino(trozosDeLinea);
+			} catch (NumberFormatException e) {
+				try {
+					if (!trozosDeLinea[1].equals("->")) {
+						throw new FormatoDeLineaInvalidoException(
+								"Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
+					} else {
+						cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
+					}
+				} catch (FormatoDeLineaInvalidoException fe) {
+					System.err.println("Advertencia. Problema no critico encontrado en linea: " + cantidadDeLineas
+							+ ", formato de ruta invalida.");
+					// No hace nada, no afecta el proceso.
+				}
+			}
+			break;
 
-        switch (trozosDeLinea.length) {
-            case 1:
-                cargarValorDeCantidadTotalDePueblos(trozosDeLinea[0]);
-                break;
+		case 4:
+			agregarUnPuebloAlEscenario(trozosDeLinea);
+			verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida();
+			break;
 
-            case 3:
-                try {
-                    verificarSiSegundoTrozoEsParseableParaCrearCamino(trozosDeLinea[1]);
-                    cargarUnCamino(trozosDeLinea);
-                } catch (NumberFormatException e) {
-                    try {
-                        if (!trozosDeLinea[1].equals("->")) {
-                            throw new FormatoDeLineaInvalidoException("Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
-                        } else {
-                            cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
-                        }
-                    } catch (FormatoDeLineaInvalidoException fe) {
-                        System.err.println("Advertencia. Problema no critico encontrado en linea: " + cantidadDeLineas + ", formato de ruta invalida.");
-                        // No hace nada, no afecta el proceso.
-                    }
-                }
-                break;
+		default:
+			throw new FormatoDeLineaInvalidoException("Formato de linea invalido en linea: " + cantidadDeLineas);
+		}
+	}
 
-            case 4:
-                agregarUnPuebloAlEscenario(trozosDeLinea);
-                verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida();
-                break;
+	private void verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida() {
+		cantidadTotalDePueblosAlcanzada = ++contadorDePueblosAgregadosHastaAhora == cantidadTotalDePueblos;
+	}
 
-            default:
-                throw new FormatoDeLineaInvalidoException("Formato de linea invalido en linea: " + cantidadDeLineas);
-        }
-    }
+	// Caso linea de longitud 1
+	private void cargarValorDeCantidadTotalDePueblos(String dato) {
+		try {
+			cantidadTotalDePueblos = verificarValorNumericoPositivo(Integer.parseInt(dato));
+		} catch (ValorNoPositivoException e) {
+			System.err.println("El numero ingresado deberia ser mayor a 0 y se ingreso:" + dato);
+			e.getStackTrace();
+		} catch (NumberFormatException e) {
+			System.err.println("La cantidad de pueblos debe ser ingresada con un numero entero y se ingreso: " + dato);
+			e.getStackTrace();
+		}
+	}
 
-    private void verificarSiSeHaAlcanzadoLaCantidadDePueblosEstablecida() {
-        cantidadTotalDePueblosAlcanzada = ++contadorDePueblosAgregadosHastaAhora == cantidadTotalDePueblos;
-    }
+	// Caso linea de longitud 3
+	private void cargarLaRutaObjetivo(String origen, String destino) {
+		this.origen = origen;
+		this.destino = destino;
+		this.rutaYaEstablecida = true;
+	}
 
-    // Caso linea de longitud 1
-    private void cargarValorDeCantidadTotalDePueblos(String dato) {
-        try {
-            cantidadTotalDePueblos = verificarValorNumericoPositivo(Integer.parseInt(dato));
-        } catch (ValorNoPositivoException e) {
-            System.err.println("El numero ingresado deberia ser mayor a 0 y se ingreso:" + dato);
-            e.getStackTrace();
-        } catch (NumberFormatException e) {
-            System.err.println("La cantidad de pueblos debe ser ingresada con un numero entero y se ingreso: " + dato);
-            e.getStackTrace();
-        }
-    }
+	private void verificarSiSegundoTrozoEsParseableParaCrearCamino(String segmento) {
+		Integer.parseInt(segmento);
+	}
 
-    // Caso linea de longitud 3
-    private void cargarLaRutaObjetivo(String origen, String destino) {
-        this.origen = origen;
-        this.destino = destino;
-        this.rutaYaEstablecida = true;
-    }
+	// Caso de linea de longitud 3
+	private void cargarUnCamino(String[] arregloDeDatos) {
+		String origen = arregloDeDatos[0];
+		String destino = arregloDeDatos[1];
+		int peso = Integer.parseInt(arregloDeDatos[2]);
 
-    private void verificarSiSegundoTrozoEsParseableParaCrearCamino(String segmento) {
-        Integer.parseInt(segmento);
-    }
+		agregarCamino(origen, destino, peso);
+	}
 
-    // Caso de linea de longitud 3
-    private void cargarUnCamino(String[] arregloDeDatos) {
-        String origen = arregloDeDatos[0];
-        String destino = arregloDeDatos[1];
-        int peso = Integer.parseInt(arregloDeDatos[2]);
+	private void agregarCamino(String origen, String destino, int peso) {
+		if (!mapaDePueblos.containsKey(origen)) {
+			mapaDePueblos.put(origen, new Pueblo(origen));
+		}
+		if (!mapaDePueblos.containsKey(destino)) {
+			mapaDePueblos.put(destino, new Pueblo(destino));
+		}
+		mapaDePueblos.get(origen).agregarCamino(new Camino(mapaDePueblos.get(destino), peso));
+	}
 
-        agregarCamino(origen, destino, peso);
-    }
+	// Caso de linea de longitud 4
+	private void agregarUnPuebloAlEscenario(String[] arregloDeDatos) {
 
-    private void agregarCamino(String origen, String destino, int peso) {
-        if (!mapaDePueblos.containsKey(origen)) {
-            mapaDePueblos.put(origen, new Pueblo(origen));
-        }
-        if (!mapaDePueblos.containsKey(destino)) {
-            mapaDePueblos.put(destino, new Pueblo(destino));
-        }
-        mapaDePueblos.get(origen).agregarCamino(new Camino(mapaDePueblos.get(destino), peso));
-    }
+		try {
+			int numeroDePueblo = verificarValorNumericoPositivo(Integer.parseInt(arregloDeDatos[0]));
+			int cantidadDeGuerreros = verificarValorNumericoPositivo(Integer.parseInt(arregloDeDatos[1]));
+			Guerrero guerrero = verificarRazaDeGuerreroDelEjercito(arregloDeDatos[2]);
+			Ejercito ejercito = verificarElTipoDeEjercito(guerrero, cantidadDeGuerreros, arregloDeDatos[3]);
 
-    // Caso de linea de longitud 4
-    private void agregarUnPuebloAlEscenario(String[] arregloDeDatos) {
+			if (ejercito instanceof EjercitoPropio) {
+				setEjercitoPropio((EjercitoPropio) ejercito);
+				this.ejercitoPropioEstablecido = true;
+			}
+			agregarPueblo(numeroDePueblo, ejercito);
 
-        try {
-            int numeroDePueblo = verificarValorNumericoPositivo(Integer.parseInt(arregloDeDatos[0]));
-            int cantidadDeGuerreros = verificarValorNumericoPositivo(Integer.parseInt(arregloDeDatos[1]));
-            Guerrero guerrero = verificarRazaDeGuerreroDelEjercito(arregloDeDatos[2]);
-            Ejercito ejercito = verificarElTipoDeEjercito(guerrero, cantidadDeGuerreros, arregloDeDatos[3]);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException(
+					"Se ingreso un valor de numero de pueblo o cantidad de guerreros invalido. No es numerico.");
+		} catch (ValorNoPositivoException | FormatoDeLineaInvalidoException e1) {
+			e1.printStackTrace();
+		}
+	}
 
-            if (ejercito instanceof EjercitoPropio) {
-                setEjercitoPropio((EjercitoPropio) ejercito);
-                this.ejercitoPropioEstablecido = true;
-            }
-            agregarPueblo(numeroDePueblo, ejercito);
+	/**
+	 * post: Guarda el valor de ejercitoPropio para pasarlo despues en el respectivo
+	 * atributo de Escenario
+	 */
+	private void setEjercitoPropio(EjercitoPropio ejercitoPropio) {
+		this.ejercitoPropio = ejercitoPropio;
+	}
 
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("Se ingreso un valor de numero de pueblo o cantidad de guerreros invalido. No es numerico.");
-        } catch (ValorNoPositivoException | FormatoDeLineaInvalidoException e1) {
-            e1.printStackTrace();
-        }
-    }
+	private void agregarPueblo(int numeroDePueblo, Ejercito ejercito) {
+		if (!mapaDePueblos.containsKey(String.valueOf(numeroDePueblo))) {
+			mapaDePueblos.put(String.valueOf(numeroDePueblo), new Pueblo(numeroDePueblo, ejercito));
+		} else {
+			mapaDePueblos.get(String.valueOf(numeroDePueblo)).setEjercito(ejercito);
+		}
+	}
 
-    /**
-     * post: Guarda el valor de ejercitoPropio para pasarlo despues en el respectivo atributo de Escenario
-     */
-    private void setEjercitoPropio(EjercitoPropio ejercitoPropio) {
-        this.ejercitoPropio = ejercitoPropio;
-    }
+	private Ejercito verificarElTipoDeEjercito(Guerrero guerrero, int cantidadDeGuerreros, String dato)
+			throws FormatoDeLineaInvalidoException {
+		switch (dato.toLowerCase()) {
 
-    private void agregarPueblo(int numeroDePueblo, Ejercito ejercito) {
-        if (!mapaDePueblos.containsKey(String.valueOf(numeroDePueblo))) {
-            mapaDePueblos.put(String.valueOf(numeroDePueblo), new Pueblo(numeroDePueblo, ejercito));
-        } else {
-            mapaDePueblos.get(String.valueOf(numeroDePueblo)).setEjercito(ejercito);
-        }
-    }
+		case "propio":
+			return new EjercitoPropio(guerrero, cantidadDeGuerreros);
 
+		case "aliado":
+			return new EjercitoAliado(guerrero, cantidadDeGuerreros);
 
-    private Ejercito verificarElTipoDeEjercito(Guerrero guerrero, int cantidadDeGuerreros, String dato) throws FormatoDeLineaInvalidoException {
-        switch (dato.toLowerCase()) {
+		case "enemigo":
+			return new EjercitoEnemigo(guerrero, cantidadDeGuerreros);
 
-            case "propio":
-                return new EjercitoPropio(guerrero, cantidadDeGuerreros);
+		default:
+			throw new FormatoDeLineaInvalidoException(
+					"El tipo de Ejercito ingresado: " + dato + " en la linea: " + cantidadDeLineas + "es invalido.");
+		}
 
-            case "aliado":
-                return new EjercitoAliado(guerrero, cantidadDeGuerreros);
+	}
 
-            case "enemigo":
-                return new EjercitoEnemigo(guerrero, cantidadDeGuerreros);
+	private int verificarValorNumericoPositivo(int numero) throws ValorNoPositivoException {
+		if (numero <= 0) {
+			throw new ValorNoPositivoException();
+		}
+		return numero;
 
-            default:
-                throw new FormatoDeLineaInvalidoException("El tipo de Ejercito ingresado: " + dato + " en la linea: " + cantidadDeLineas + "es invalido.");
-        }
+	}
 
-    }
+	private Guerrero verificarRazaDeGuerreroDelEjercito(String dato) throws FormatoDeLineaInvalidoException {
+		switch (dato.toLowerCase()) {
 
-    private int verificarValorNumericoPositivo(int numero) throws ValorNoPositivoException {
-        if (numero <= 0) {
-            throw new ValorNoPositivoException();
-        }
-        return numero;
+		case "wrives":
+			return new Wrives();
 
-    }
+		case "reralopes":
+			return new Reralopes();
 
-    private Guerrero verificarRazaDeGuerreroDelEjercito(String dato) throws FormatoDeLineaInvalidoException {
-        switch (dato.toLowerCase()) {
+		case "radaiteran":
+			return new Radaiteran();
 
-            case "wrives":
-                return new Wrives();
+		case "nortaichian":
+			return new Nortaichian();
 
-            case "reralopes":
-                return new Reralopes();
-
-            case "radaiteran":
-                return new Radaiteran();
-
-            case "nortaichian":
-                return new Nortaichian();
-
-            default:
-                throw new FormatoDeLineaInvalidoException("El tipo de guerrero: " + dato + " en la linea: " + cantidadDeLineas + "es invalido.");
-        }
-    }
+		default:
+			throw new FormatoDeLineaInvalidoException(
+					"El tipo de guerrero: " + dato + " en la linea: " + cantidadDeLineas + "es invalido.");
+		}
+	}
 }

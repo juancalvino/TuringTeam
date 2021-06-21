@@ -23,6 +23,7 @@ public class Radaiteran extends Guerrero {
 
 	/**
 	 * Acrecienta el ataque en 3
+	 * 
 	 * @return el crecimiento total del ataque.
 	 */
 	private int getDanioExtraPorAtaques() {

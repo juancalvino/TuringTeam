@@ -12,12 +12,12 @@ public class ReralopesTest {
 	public void seCreaUnaInstanciaDeReralopes() {
 		new Reralopes();
 	}
-	
+
 	@Test
 	public void seVerificaLaSaludInicialDelReralope() {
 		Assert.assertEquals(53, reralope.getSalud());
 	}
-	
+
 	@Test
 	public void seVerificaElDanioBasicoDelReralope() {
 		enemigo = new GuerreroHack(127, 100);
@@ -67,14 +67,14 @@ public class ReralopesTest {
 		enemigo.recibirAtaque(reralope.atacar());
 		Assert.assertEquals(0, enemigo.getSalud());
 	}
-	
+
 	// un Reralopes se desconcentra luego de recibir un ataque (es
 	// decir, pierde su efecto descansado de inflijir tres golpes criticos (x2))
 	@Test
 	public void seDesconcentraAlSerAtacado() {
 		enemigo = new GuerreroHack(135, 10);
 		reralope.descansar();
-		
+
 		enemigo.recibirAtaque(reralope.atacar());
 		enemigo.recibirAtaque(reralope.atacar());
 		Assert.assertEquals(27, enemigo.getSalud());

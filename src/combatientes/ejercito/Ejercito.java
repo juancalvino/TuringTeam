@@ -104,9 +104,9 @@ public abstract class Ejercito implements Combatiente, Comparable<Ejercito> {
 	}
 
 	/**
-	 * El ejercito interactua con el ejercito jugador.
-	 * Si es EjercitoAliado se unira a EjercitoPropio y EjercitoPropio descansara.
-	 * Si es EjercitoEnemigo batallara contra el EjercitoPropio.
+	 * El ejercito interactua con el ejercito jugador. Si es EjercitoAliado se unira
+	 * a EjercitoPropio y EjercitoPropio descansara. Si es EjercitoEnemigo batallara
+	 * contra el EjercitoPropio.
 	 */
 	public abstract void interactuar();
 

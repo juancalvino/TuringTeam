@@ -10,8 +10,7 @@ public class EjercitoAliado extends Ejercito {
 	}
 
 	/**
-	 * El EjercitoAliado se agrega al EjercitoPropio.
-	 * Y el EjercitoPropio descansa.
+	 * El EjercitoAliado se agrega al EjercitoPropio. Y el EjercitoPropio descansa.
 	 */
 	@Override
 	public void interactuar() {

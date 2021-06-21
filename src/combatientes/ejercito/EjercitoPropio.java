@@ -6,7 +6,8 @@ import combatientes.guerrero.Guerrero;
 public class EjercitoPropio extends Ejercito {
 
 	/**
-	 * Inicializa la instancia para ser utilizada. 
+	 * Inicializa la instancia para ser utilizada.
+	 * 
 	 * @param tipo
 	 * @param cantidad debe ser mayo o igual a 0.
 	 */
@@ -17,6 +18,7 @@ public class EjercitoPropio extends Ejercito {
 
 	/**
 	 * Agrega a un EjercitoAliado a nuestro Ejercito.
+	 * 
 	 * @param aliado
 	 */
 	public void agregarEjercito(EjercitoAliado aliado) {
