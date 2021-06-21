@@ -36,11 +36,7 @@ public class Camino implements Comparable<Camino> {
     }
 
     /**
-<<<<<<< HEAD
      * Compara en dias el recorrido del camino con otro camino.
-=======
-     * compara dos caminos para elegir aquel que sea mas corto en cantidad de dias.
->>>>>>> branch 'IO-Escenario' of https://github.com/juancalvino/TuringTeam.git
      */
     @Override
     public int compareTo(Camino otroCamino) {

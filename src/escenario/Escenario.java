@@ -14,11 +14,7 @@ public class Escenario {
     private static Escenario unicaInstancia;
 
     /**
-<<<<<<< HEAD
      * Inicializa el Escenario
-=======
-     * Inicializa el escenario.
->>>>>>> branch 'IO-Escenario' of https://github.com/juancalvino/TuringTeam.git
      */
     private Escenario() {
         this.mapaDePueblos = new HashMap<>();
@@ -27,12 +23,7 @@ public class Escenario {
     }
 
     /**
-<<<<<<< HEAD
      * @return el Escenario
-=======
-     * se crea una instancia unica del escenario.
-     * @return el escenario
->>>>>>> branch 'IO-Escenario' of https://github.com/juancalvino/TuringTeam.git
      */
     public static Escenario getInstance() {
         if (unicaInstancia == null) {
@@ -42,11 +33,7 @@ public class Escenario {
     }
 
     /**
-<<<<<<< HEAD
      * @return la cantidad de pueblos 
-=======
-     * @return la cantidad de pueblos.
->>>>>>> branch 'IO-Escenario' of https://github.com/juancalvino/TuringTeam.git
      */
     public int getCantidadDePueblos() {
         return mapaDePueblos.size();
@@ -100,11 +87,7 @@ public class Escenario {
     }
 
     /**
-<<<<<<< HEAD
      * @return el mapa de los pueblos.
-=======
-     * @return el mapa de los pueblos
->>>>>>> branch 'IO-Escenario' of https://github.com/juancalvino/TuringTeam.git
      */
     public HashMap<String, Pueblo> getMapaDePueblos() {
         return mapaDePueblos;

@@ -6,18 +6,10 @@ import combatientes.ejercito.EjercitoPropio;
 public class Batalla {
 
 	/**
-<<<<<<< HEAD
 	 * Los ejercitos ingresados como parametros combaten.
 	 * @param ejercitoPropio
 	 * @param ejercitoEnemigo
 	 * @return el ejercito sobreviviente
-=======
-	 * enfrenta dos ejercitos pasados como parametro
-	 * 
-	 * @param ejercitoPropio
-	 * @param ejercitoEnemigo
-	 * @return el ejercito sobreviviente 
->>>>>>> branch 'IO-Escenario' of https://github.com/juancalvino/TuringTeam.git
 	 */
     public static Combatiente obtenerSobreviviente(EjercitoPropio ejercitoPropio, EjercitoEnemigo ejercitoEnemigo) {
 

@@ -22,7 +22,7 @@ public class Pueblo {
         this.nombre = String.valueOf(numeroDePueblo);
         this.ejercito = ejercito;
     }
-    
+
     public void agregarCamino(Camino camino) {
         caminos.put(camino.getPuebloDestino().nombre, camino);
     }
