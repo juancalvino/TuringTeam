@@ -11,14 +11,22 @@ public class Camino implements Comparable<Camino> {
         this.recorridoEnDias = dias;
     }
 
+    /**
+     * @return el pueblo hacia donde va el camino
+     */
     public Pueblo getPuebloDestino() {
         return this.puebloDestino;
     }
 
+    /**
+     * @return el tiempo que se tarda en realizar el camino en dias.
+     */
     public int getRecorridoEnDias() {
         return this.recorridoEnDias;
     }
 
+    
+    //TODO??
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,6 +35,9 @@ public class Camino implements Comparable<Camino> {
         return Objects.equals(getPuebloDestino(), camino.getPuebloDestino()) && Objects.equals(getRecorridoEnDias(), camino.getRecorridoEnDias());
     }
 
+    /**
+     * Compara en dias el recorrido del camino con otro camino.
+     */
     @Override
     public int compareTo(Camino otroCamino) {
         return this.recorridoEnDias.compareTo(otroCamino.getRecorridoEnDias());
