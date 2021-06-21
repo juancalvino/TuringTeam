@@ -51,8 +51,6 @@ public class CargaDeArchivos {
         cargarRutaObjetivoAlEscenario();
     }
 
-    // TODO: 16/6/2021 Implementar un metodo para verificar si la ruta objetivo es ALCANZABLE antes de instanciar
-
     private void verificarSiEstaListoParaInstanciar() {
         if (!rutaYaEstablecida)
             throw new RuntimeException("El Escenario no se instancio. No se ha establecido la ruta objetivo.");
@@ -81,8 +79,10 @@ public class CargaDeArchivos {
     }
     // END
 
-    // TODO: 16/6/2021  SI ES POSIBLE, MODULARIZAR TODO ESTE MASACOTE DE CLASE PARA DELEGAR RESPONSABILIDADES.
-
+    /**
+     * Carga el archivo pasado como parametro
+     * @param pArchivo: ruta de contenido del archivo
+     */
     public void cargarArchivo(String pArchivo) {
 
         FileReader archivo = null;
@@ -114,6 +114,11 @@ public class CargaDeArchivos {
         }
     }
 
+    /**
+     * Verifica que las lineas del archivo esten bien formadas
+     * @param linea
+     * @throws Exception
+     */
     public void decodificarLinea(String linea) throws Exception {
         String[] trozosDeLinea = linea.trim().split(" ");
 
@@ -132,7 +137,6 @@ public class CargaDeArchivos {
                             throw new FormatoDeLineaInvalidoException("Ruta objetivo ingresada invalida en la linea: " + cantidadDeLineas);
                         } else {
                             cargarLaRutaObjetivo(trozosDeLinea[0], trozosDeLinea[2]);
-                            // TODO: 16/6/2021 Buscar una forma de verificar si la ruta es alcanzable al momento y guardar dicho valor en un atributo.
                         }
                     } catch (FormatoDeLineaInvalidoException fe) {
                         System.err.println("Advertencia. Problema no critico encontrado en linea: " + cantidadDeLineas + ", formato de ruta invalida.");

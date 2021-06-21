@@ -2,7 +2,6 @@ package combatientes.ejercito;
 
 import combatientes.Combatiente;
 import combatientes.guerrero.Guerrero;
-import escenario.Escenario;
 
 public class EjercitoPropio extends Ejercito {
 
@@ -46,7 +45,6 @@ public class EjercitoPropio extends Ejercito {
 	 */
 	@Override
 	public void interactuar() {
-		// no hace nada
 	}
 
 }

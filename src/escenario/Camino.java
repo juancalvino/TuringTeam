@@ -26,7 +26,9 @@ public class Camino implements Comparable<Camino> {
     }
 
     
-    //TODO??
+    /**
+     * Compara si dos caminos son iguales
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

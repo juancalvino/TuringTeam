@@ -9,7 +9,6 @@ import java.util.Objects;
 
 
 public class Pueblo {
-    //TODO Preguntar que conviene mas que el camino lo tenga el escenario o el pueblo?
     private final HashMap<String, Camino> caminos = new HashMap<>();
     private Ejercito ejercito;
     private final String nombre;
@@ -49,14 +48,17 @@ public class Pueblo {
         this.ejercito = ejercito;
     }
 
+    /**
+     * @return si otro pueblo es igual al actual a partir de su nombre y camino
+     */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pueblo pueblo = (Pueblo) o;
+    public boolean equals(Object otroPueblo) {
+        if (this == otroPueblo) return true;
+        if (otroPueblo == null || getClass() != otroPueblo.getClass()) return false;
+        Pueblo pueblo = (Pueblo) otroPueblo;
         return Objects.equals(caminos, pueblo.caminos) && Objects.equals(nombre, pueblo.nombre);
     }
-
+    
     public void interactuar() {
         ejercito.interactuar();
     }

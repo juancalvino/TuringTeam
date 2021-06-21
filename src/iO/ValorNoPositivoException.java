@@ -1,7 +1,10 @@
 package iO;
 
 public class ValorNoPositivoException extends Exception {
-    ValorNoPositivoException() {
-        super("El valor numérico ingresado debe ser mayor a 0.");
+    
+	private static final long serialVersionUID = 4195138972352363924L;
+
+	ValorNoPositivoException() {
+        super("El valor numerico ingresado debe ser mayor a 0.");
     }
 }
