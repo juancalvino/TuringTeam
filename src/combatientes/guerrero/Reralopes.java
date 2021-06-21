@@ -6,6 +6,9 @@ public class Reralopes extends Guerrero {
 	private int ataquesConsecutivos;
 	private int ataquesConcentrados;
 
+	/**
+	 * Inicializa al Guerrero para ser utilizado
+	 */
 	public Reralopes() {
 		this.salud = 53;
 		this.danioBasico = 27;
@@ -61,6 +64,9 @@ public class Reralopes extends Guerrero {
 		ataquesConcentrados = 3;
 	}
 
+	/**
+	 * @return una nueva instancia de la clase.
+	 */
 	@Override
 	protected Guerrero crearUnidad() {
 		return new Reralopes();

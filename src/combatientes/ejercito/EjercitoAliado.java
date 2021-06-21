@@ -9,6 +9,10 @@ public class EjercitoAliado extends Ejercito {
 		super(tipo, cantidad);
 	}
 
+	/**
+	 * El EjercitoAliado se agrega al EjercitoPropio.
+	 * Y el EjercitoPropio descansa.
+	 */
 	@Override
 	public void interactuar() {
 		Escenario.getInstance().getJugador().descansar();
