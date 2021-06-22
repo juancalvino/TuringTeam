@@ -71,7 +71,7 @@ public class BatallaTest {
 	}
 
 	@Test
-	public void prueba007() {
+	public void seAgregaEjercitoAliadoYDebeGanarEjercitoPropioEnTodasEstasOcasiones() {
 		ejercitoPropio = new EjercitoPropio(new Nortaichian(), 2);
 		ejercitoEnemigo = new EjercitoEnemigo(new Reralopes(), 3);
 
@@ -88,7 +88,7 @@ public class BatallaTest {
 	}
 
 	@Test
-	public void prueba008() {
+	public void debeSobrevivirEjercictoPropioEnLasTresOcasiones() {
 		ejercitoPropio = new EjercitoPropio(new GuerreroHack(100, 50), 4);
 		ejercitoEnemigo = new EjercitoEnemigo(new GuerreroHack(100, 50), 2);
 
@@ -109,7 +109,7 @@ public class BatallaTest {
 	}
 
 	@Test
-	public void prueba009() {
+	public void deberiaAgregarDosEjercitosAliadosYSobreviveEjercitoPropio() {
 		ejercitoPropio = new EjercitoPropio(new GuerreroHack(100, 100), 4);
 
 		EjercitoAliado ejercitoAliadoUno = new EjercitoAliado(new GuerreroHack(200, 200), 4);
