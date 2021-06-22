@@ -1,0 +1,14 @@
+1 -> 5
+1 2 5
+1 3 2
+3 4 5
+4 5 1
+2 6 2
+6 5 4
+6
+1 100 Reralopes propio
+2 20 Wrives aliado
+3 70 Reralopes enemigo
+4 30 Reralopes aliado
+5 40 Wrives enemigo
+6 50 Nortaichian aliado
