@@ -7,8 +7,8 @@ import iO.CargaDeArchivos;
 
 public class HechiceroTest {
 
+	Hechicero hechicero = new Hechicero();
     CargaDeArchivos io = new CargaDeArchivos();
-    Hechicero hechicero = new Hechicero();
 
     @Test
     public void deberianSobrevivir75GuerrerosYHacerRecorridoDe22DiasEnArchivoConsigna() {
@@ -27,7 +27,50 @@ public class HechiceroTest {
     @Test
     public void deberianSobrevivir27143GuerrerosYHacerRecorridoDe19Dias() {
         io.instanciarElEscenarioEnRuta("test/archivosHechicero/caso2.txt");
-        String prediccion = "Mision exitosa. Sobrevivieron: 27143 guerreros. El recorrido tuvo una duracion de: 19 dias.";
+        String prediccion = "Mision exitosa. Sobrevivieron: 70001 guerreros. El recorrido tuvo una duracion de: 19 dias.";
         Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
     }
-}
+    
+    @Test
+    public void test01() {
+    io.instanciarElEscenarioEnRuta("test/archivosIO/pruebaArchivoConsigna.txt");
+    String prediccion = "Mision exitosa. Sobrevivieron: 75 guerreros. El recorrido tuvo una duracion de: 22 dias.";
+    Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
+    }
+
+    @Test
+    public void test02() {
+    io.instanciarElEscenarioEnRuta("test/archivosHechicero/caso1.txt");
+    String prediccion = "Mision exitosa. Sobrevivieron: 2 guerreros. El recorrido tuvo una duracion de: 24 dias.";
+    Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
+    }
+
+    @Test
+    public void test03() {
+    io.instanciarElEscenarioEnRuta("test/archivosHechicero/caso2.txt");
+    String prediccion = "Mision exitosa. Sobrevivieron: 70001 guerreros. El recorrido tuvo una duracion de: 19 dias.";
+    Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
+    }
+    
+    @Test
+    public void test04() {
+    io.instanciarElEscenarioEnRuta("test/archivosHechicero/caso3.txt");
+    String prediccion = "Mision fallida. Ultimo pueblo alcanzado: 4";
+    Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
+    }
+    
+    @Test
+    public void test05() {
+    io.instanciarElEscenarioEnRuta("test/archivosHechicero/caso4.txt");
+    String prediccion = "Mision exitosa. Sobrevivieron: 43 guerreros. El recorrido tuvo una duracion de: 4 dias.";
+    Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
+    }
+
+    @Test
+    public void test06() {
+    io.instanciarElEscenarioEnRuta("test/archivosHechicero/caso5.txt");
+    String prediccion = "Mision exitosa. Sobrevivieron: 7 guerreros. El recorrido tuvo una duracion de: 8 dias.";
+    Assert.assertEquals(prediccion, hechicero.realizarPrediccionDeAventura());
+    }
+    
+    }

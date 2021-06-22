@@ -63,5 +63,5 @@ public class Pueblo {
 	public void interactuar() {
 		ejercito.interactuar();
 	}
-
+	
 }
